@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers.common import DocumentSerializer
 from .models import Document
@@ -11,6 +11,8 @@ from jobs.models import Job
 # Create your views here.
 
 class DocumentListView(APIView):
+    permission_classes = (IsAuthenticated)    
+    
     # Get all documents
     def get(self, request):
       print('request.user ->', request.user)
@@ -32,7 +34,7 @@ class DocumentListView(APIView):
 
 # Single document view
 class DocumentDetailView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated)
 
     def get_document(self, pk):
         try:
@@ -72,7 +74,8 @@ class DocumentDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class DocumentByJobView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated)
+
     def get_job(self, pk):
         try:
             return Job.objects.get(pk=pk)
@@ -84,6 +87,7 @@ class DocumentByJobView(APIView):
             return Document.objects.filter(job=pk)
         except Document.DoesNotExist:
             raise NotFound("Document not found!")
+            
     # GET
     # Get documents by job id
     def get(self, request, pk):

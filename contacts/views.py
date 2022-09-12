@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers.common import ContactSerializer
 from .models import Contact
@@ -12,6 +12,7 @@ from companies.models import Company
 # Create your views here.
 
 class ContactListView(APIView):
+    permission_classes = (IsAuthenticated)
 
     # GET
     # Get all contacts
@@ -34,7 +35,7 @@ class ContactListView(APIView):
 
 
 class ContactDetailView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated)
 
     def get_contact(self, pk):
         try:
@@ -76,7 +77,7 @@ class ContactDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ContactByCompanyView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated)
 
     def get_company(self, pk):
         try:
@@ -101,7 +102,7 @@ class ContactByCompanyView(APIView):
         return Response(serialized_contacts.data)
 
 class ContactByJobView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated)
 
     def get_job(self, pk):
         try:

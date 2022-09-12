@@ -7,10 +7,10 @@ from .models import Company
 from .serializers.common import CompanySerializer
 # from .serializer.populated import PopulatedCompanySerializer
 
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 
 class CompanyListView(APIView):
-
+  permission_classes = (IsAuthenticated)
   # GET
   # Get all companies
   def get(self, request):
@@ -32,6 +32,7 @@ class CompanyListView(APIView):
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class CompanyDetailView(APIView):
+  permission_classes = (IsAuthenticated)
 
   def get_company(self, pk):
     try:

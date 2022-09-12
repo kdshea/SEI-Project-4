@@ -36,13 +36,10 @@ class LoginView(APIView):
             print("FAILED AT EMAIL STAGE")
             raise PermissionDenied("Invalid credentials")
 
-        # check passwords match
         if not user_to_login.check_password(password):
             print("FAILED AT PASSWORD STAGE")
             raise PermissionDenied("Invalid credentials")
-
         dt = datetime.now() + timedelta(days=7)
-
         token = jwt.encode(
             {
                 "sub": user_to_login.id,
