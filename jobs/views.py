@@ -10,7 +10,7 @@ from .serializers.common import JobSerializer
 from rest_framework.permissions import IsAuthenticated
 
 class JobListView(APIView):
-  permission_classes = (IsAuthenticated)
+  permission_classes = [IsAuthenticated]
 
   # GET
   # Get all jobs
@@ -32,7 +32,7 @@ class JobListView(APIView):
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class JobDetailView(APIView):
-  permission_classes = (IsAuthenticated)
+  permission_classes = [IsAuthenticated]
 
   def get_job(self, pk):
     try:
@@ -73,7 +73,7 @@ class JobDetailView(APIView):
       return Response(status=status.HTTP_204_NO_CONTENT)
 
 class JobStatusView(APIView):
-  permission_classes = (IsAuthenticated)
+  permission_classes = [IsAuthenticated]
 
   def get_job(self, pk):
     try:

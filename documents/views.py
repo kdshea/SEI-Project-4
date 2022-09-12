@@ -11,7 +11,7 @@ from jobs.models import Job
 # Create your views here.
 
 class DocumentListView(APIView):
-    permission_classes = (IsAuthenticated)    
+    permission_classes = [IsAuthenticated]    
     
     # Get all documents
     def get(self, request):
@@ -34,7 +34,7 @@ class DocumentListView(APIView):
 
 # Single document view
 class DocumentDetailView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_document(self, pk):
         try:
@@ -74,7 +74,7 @@ class DocumentDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class DocumentByJobView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_job(self, pk):
         try:

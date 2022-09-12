@@ -33,7 +33,7 @@ class ActivityListView(APIView):
 
 # Single activity view
 class ActivityDetailView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_activity(self, pk):
         try:
@@ -73,7 +73,7 @@ class ActivityDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ActivityByJobView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_job(self, pk):
         try:
@@ -98,7 +98,7 @@ class ActivityByJobView(APIView):
         return Response(serialized_activities.data)
 
 class ActivityByStatusView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_activity(self, pk):
         try:
@@ -114,7 +114,7 @@ class ActivityByStatusView(APIView):
         return Response(serialized_activities.data)
 
 class ActivityPastDueView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
     def get_activity(self):
       try:
           now = datetime.datetime.now()
@@ -130,7 +130,7 @@ class ActivityPastDueView(APIView):
         return Response(serialized_activities.data)
 
 class ActivityDueTodayView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
     def get_activity(self):
       try:
           now = datetime.datetime.now()
@@ -146,7 +146,7 @@ class ActivityDueTodayView(APIView):
         return Response(serialized_activities.data)
 
 class ActivityUpcomingView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
     def get_activity(self):
       try:
           now = datetime.datetime.now()

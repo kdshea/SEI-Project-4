@@ -12,7 +12,7 @@ from companies.models import Company
 # Create your views here.
 
 class ContactListView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     # GET
     # Get all contacts
@@ -35,7 +35,7 @@ class ContactListView(APIView):
 
 
 class ContactDetailView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_contact(self, pk):
         try:
@@ -77,7 +77,7 @@ class ContactDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ContactByCompanyView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_company(self, pk):
         try:
@@ -102,7 +102,7 @@ class ContactByCompanyView(APIView):
         return Response(serialized_contacts.data)
 
 class ContactByJobView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_job(self, pk):
         try:

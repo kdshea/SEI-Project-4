@@ -8,8 +8,9 @@ django = "*"
 psycopg2 = "*"
 pylint = "*"
 autopep8 = "*"
-jwt = "*"
 django-rest-framework = "*"
+django-cors-headers = "*"
+pyjwt = "*"
 
 [dev-packages]
 

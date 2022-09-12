@@ -13,6 +13,7 @@ class JWTAuthentication(BasicAuthentication):
         print("HITS AUTHENTICATE MIDDLEWARE")
         header = request.headers.get('Authorization')
         if not header:
+            print('No header')
             return None
         if not header.startswith('Bearer'):
             print("FAILED AT TOKEN SYNTAX")

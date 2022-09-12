@@ -11,7 +11,7 @@ from jobs.models import Job
 # Create your views here.
 
 class NoteListView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     # Get all notes
     def get(self, request):
@@ -34,7 +34,7 @@ class NoteListView(APIView):
 
 # Single note view
 class NoteDetailView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
 
     def get_note(self, pk):
         try:
@@ -73,7 +73,7 @@ class NoteDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class NoteByJobView(APIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = [IsAuthenticated]
     def get_job(self, pk):
         try:
             return Job.objects.get(pk=pk)
