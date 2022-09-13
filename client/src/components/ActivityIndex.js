@@ -43,33 +43,39 @@ const ActivityIndex = () => {
             { activityData.map(item => {
               const { id } = item
               return (
-                <Row key={id} >
-                  <Col>
-                    <div>
-                      {/*  https://stackoverflow.com/questions/42682406/how-to-get-values-properties-from-a-react-bootstrap-checkbox */}
-                      {/* https://react-bootstrap.github.io/forms/checks-radios/#form-check-props */}
-                      <Form>
-                        <Form.Check 
-                          type="checkbox"
-                          id="completed_status"
-                          label={item.completed_status}
-                        />
-                      </Form>
-                    </div>
+                <>
+                  <Row key={id} >
+                    <Col md={2}>
+                      <div className='box'>
+                        {/*  https://stackoverflow.com/questions/42682406/how-to-get-values-properties-from-a-react-bootstrap-checkbox */}
+                        {/* https://react-bootstrap.github.io/forms/checks-radios/#form-check-props */}
+                        <Form>
+                          <Form.Check 
+                            type="checkbox"
+                            id="completed_status"
+                            label={item.completed_status}
+                          />
+                        </Form>
+                      </div>
 
-                  </Col>
-                  <Col>
-                    <div>
-                      <h3>{item.category}</h3>
-                      <h3>Company Name Here</h3>
-                      <h3>Job Title Here</h3>
-                      <h3>{item.due_date}</h3>
-                      <Link to={`/edit-activity/${id}`}>
-                        <i className="fa-solid fa-pen-to-square"></i>
-                      </Link>
-                    </div>
-                  </Col>
-                </Row>
+                    </Col>
+                    <Col>
+                      <div className='index-item box'>
+                        <div>{item.category}</div>
+                        <div>Company Name Here</div>
+                        <div>Job Title Here</div>
+                        <div>{item.due_date}</div>
+                      </div>
+                    </Col>
+                    <Col md={2}>
+                      <div className='box'>
+                        <Link to={`/edit-activity/${id}`}>
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </Link>
+                      </div>
+                    </Col>
+                  </Row>
+                </>
               )
             })
             }

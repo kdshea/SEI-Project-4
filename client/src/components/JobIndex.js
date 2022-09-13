@@ -35,30 +35,35 @@ const JobIndex = () => {
     <>
       { jobData[0] ?
         <div>
-          <Container as="main" >
+          <Container fluid as="main" >
 
 
             <h1>Breadcrumb Arrow Nav Here</h1>
+            {/* http://jsfiddle.net/4vrys/ */}
 
             { jobData.map(item => {
               const { id } = item
               return (
-                <Row key={id}>
-                  <Col>
-                    <Link to={`/edit-job/${id}`}>
-                      <i className="fa-solid fa-pen-to-square"></i>
-                    </Link>
-                  </Col>
-                  <Col>
-                    <div>
-                      <h3>{item.company}Company Name Here</h3>
-                      <h3>{item.title}</h3>
-                      <h3>{item.job_type}</h3>
-                      <h3>{item.job_status}</h3>
-                      <h3>Activities List Here</h3>
-                    </div>
-                  </Col>
-                </Row>
+                <>
+                  <Row key={id}>
+                    <Col md={2}>
+                      <div className='box'>
+                        <Link to={`/edit-job/${id}`}>
+                          <i className="fa-solid fa-pen-to-square"></i>
+                        </Link>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div className='index-item box' >
+                        <div>{item.company}Company Name Here</div>
+                        <div>{item.title}</div>
+                        <div>{item.job_type}</div>
+                        <div>{item.job_status}</div>
+                        <div>Activities List Here</div>
+                      </div>
+                    </Col>
+                  </Row>
+                </>
               )
             })
             }
@@ -68,6 +73,7 @@ const JobIndex = () => {
         <h2 className="text-center">
           { errors ? 'Something went wrong. Please try again later' : <Spinner />}
         </h2>
+        
       }
     </>
   )

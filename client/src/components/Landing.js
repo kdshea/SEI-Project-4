@@ -34,7 +34,6 @@ const Landing = () => {
         </div>
       </section>
       <section>
-        <h2>The job you seek is seeking you</h2>
         <Link to='/register'>
           <button>Join Now</button>
         </Link>
