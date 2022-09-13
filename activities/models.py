@@ -29,6 +29,7 @@ class Activity(models.Model):
   on_site_interview = 'On Site Interview'
   thank_you = 'Follow Up: Thank You'
   offer_response = 'Offer: Response Required'
+  other = 'Other'
   category_choices = [
   (custom_CV, 'Job-Specific CV'),
   (custom_resume, 'Job-Specific Resume'),
@@ -42,7 +43,8 @@ class Activity(models.Model):
   (technical_interview, 'Technical Interview'),
   (on_site_interview, 'On Site Interview'),
   (thank_you, 'Follow Up: Thank You'),
-  (offer_response, 'Offer: Response Required')
+  (offer_response, 'Offer: Response Required'),
+  (other, 'Other')
   ]
   category = models.CharField(
     max_length=100,

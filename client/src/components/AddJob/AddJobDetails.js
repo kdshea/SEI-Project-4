@@ -51,7 +51,7 @@ const AddJobDetails = () => {
         },
       })
       console.log(data)
-      navigate(`/jobs/${data.id}`)
+      navigate(`/add-job/${data.id}/activities`)
     } catch (error) {
       setErrors(true)
       console.log(error)

@@ -69,7 +69,7 @@ const ActivityIndex = () => {
                     </Col>
                     <Col md={1}>
                       <div className='box'>
-                        <Link to={`/edit-activity/${id}`}>
+                        <Link to={`/edit-activity/job${item.job.id}/${id}`}>
                           <i className="fa-solid fa-pen-to-square"></i>
                         </Link>
                       </div>

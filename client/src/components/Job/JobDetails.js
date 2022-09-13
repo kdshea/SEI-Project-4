@@ -1,6 +1,6 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
 import API_URL from '../../config.js'
 import Container from 'react-bootstrap/Container'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -35,7 +35,7 @@ const JobDetails = () => {
 
   return (
     <>
-      <JobNav { ...jobId } />
+      <JobNav />
       <div className='job-details'>
         <Container>
           { job ? 

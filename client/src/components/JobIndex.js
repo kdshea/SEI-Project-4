@@ -72,7 +72,7 @@ const JobIndex = () => {
                               })
                               :
                               <>
-                                <Link to={'/add-activity'}>Add an activity</Link>
+                                <Link to={`/add-job/${id}/activities`}>Add an activity</Link>
                               </>
                             }
                           </ul>
