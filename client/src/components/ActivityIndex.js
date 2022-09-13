@@ -45,7 +45,7 @@ const ActivityIndex = () => {
               return (
                 <>
                   <Row key={id} >
-                    <Col md={2}>
+                    <Col md={1}>
                       <div className='box'>
                         {/*  https://stackoverflow.com/questions/42682406/how-to-get-values-properties-from-a-react-bootstrap-checkbox */}
                         {/* https://react-bootstrap.github.io/forms/checks-radios/#form-check-props */}
@@ -67,7 +67,7 @@ const ActivityIndex = () => {
                         <div>{item.due_date}</div>
                       </div>
                     </Col>
-                    <Col md={2}>
+                    <Col md={1}>
                       <div className='box'>
                         <Link to={`/edit-activity/${id}`}>
                           <i className="fa-solid fa-pen-to-square"></i>

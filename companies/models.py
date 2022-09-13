@@ -7,7 +7,12 @@ class Company(models.Model):
   'jwt_auth.User',
   related_name="companies",
   on_delete= models.CASCADE
-)
+  )
+  job = models.ForeignKey(
+  'jobs.job',
+  related_name="companies",
+  on_delete= models.CASCADE
+  )
   name = models.CharField(max_length=200, default=None)
   industry = models.CharField(max_length=200, default=None, blank=True)
   founded = models.IntegerField(blank=True)

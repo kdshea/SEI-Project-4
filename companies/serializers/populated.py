@@ -1,5 +1,5 @@
 from .common import CompanySerializer
-from jobs.serializers.populated import PopulatedJobSerializer
+from jwt_auth.serializers.common import UserSerializer
 
 class PopulatedCompanySerializer(CompanySerializer):
-    jobs = PopulatedJobSerializer(many=True)
+    owner = UserSerializer()

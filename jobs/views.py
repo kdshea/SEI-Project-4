@@ -5,7 +5,7 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 
 from .models import Job
 from .serializers.common import JobSerializer
-# from .serializer.populated import PopulatedJobSerializer
+from .serializers.populated import PopulatedJobSerializer
 
 from rest_framework.permissions import IsAuthenticated
 
@@ -16,7 +16,7 @@ class JobListView(APIView):
   # Get all jobs
   def get(self, request):
     jobs = Job.objects.filter(owner=request.user)
-    serialized_jobs = JobSerializer(jobs, many=True)
+    serialized_jobs = PopulatedJobSerializer(jobs, many=True)
     return Response(serialized_jobs.data, status=status.HTTP_200_OK)
 
   # POST 
@@ -46,7 +46,7 @@ class JobDetailView(APIView):
       job = self.get_job(pk=pk)
       if job.owner != request.user:
           raise PermissionDenied("Unauthorized")
-      serialized_job = JobSerializer(job)
+      serialized_job = PopulatedJobSerializer(job)
       return Response(serialized_job.data)
 
   # UPDATE
@@ -85,5 +85,5 @@ class JobStatusView(APIView):
   # Get jobs by job_status
   def get(self, request, pk):
       jobs = self.get_job(pk=pk)
-      serialized_jobs = JobSerializer(jobs.filter(owner=request.user), many=True)
+      serialized_jobs = PopulatedJobSerializer(jobs.filter(owner=request.user), many=True)
       return Response(serialized_jobs.data)

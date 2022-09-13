@@ -46,7 +46,7 @@ const JobIndex = () => {
               return (
                 <>
                   <Row key={id}>
-                    <Col md={2}>
+                    <Col md={1}>
                       <div className='box'>
                         <Link to={`/edit-job/${id}`}>
                           <i className="fa-solid fa-pen-to-square"></i>
@@ -55,7 +55,7 @@ const JobIndex = () => {
                     </Col>
                     <Col>
                       <div className='index-item box' >
-                        <div>{item.company}Company Name Here</div>
+                        <div>Company Name Here</div>
                         <div>{item.title}</div>
                         <div>{item.job_type}</div>
                         <div>{item.job_status}</div>

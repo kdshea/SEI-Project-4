@@ -8,12 +8,7 @@ class Job(models.Model):
     related_name="jobs",
     on_delete= models.CASCADE
   )
-  company = models.ForeignKey(
-    'companies.Company',
-    related_name="jobs",
-    on_delete= models.CASCADE,
-    null=True
-  )
+  company_name = models.CharField(max_length=100, default=None)
   created_at = models.DateTimeField(auto_now_add=True)
   title = models.CharField(max_length=200, default=None)
   post_date = models.DateField(auto_now=False, auto_now_add=False, default=None)
