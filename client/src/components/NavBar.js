@@ -23,7 +23,7 @@ const NavBar = () => {
         ?
         <>
           <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/'>Add A Job</Nav.Link> 
+            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/add-job'>Add A Job</Nav.Link> 
           </Nav.Item>
           <Nav.Item>
             <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/activities'>Activities</Nav.Link>

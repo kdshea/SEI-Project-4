@@ -5,6 +5,7 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers.common import ActivitySerializer
+from .serializers.populated import PopulatedActivitySerializer
 from .models import Activity
 from jobs.models import Job
 
@@ -17,7 +18,7 @@ class ActivityListView(APIView):
     # Get all activities
     def get(self, request):
       activities = Activity.objects.filter(owner=request.user)
-      serialized_activities = ActivitySerializer(activities, many=True)
+      serialized_activities = PopulatedActivitySerializer(activities, many=True)
       return Response(serialized_activities.data, status=status.HTTP_200_OK)
 
     def post(self, request):

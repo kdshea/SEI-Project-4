@@ -62,8 +62,8 @@ const ActivityIndex = () => {
                     <Col>
                       <div className='index-item box'>
                         <div>{item.category}</div>
-                        <div>Company Name Here</div>
-                        <div>Job Title Here</div>
+                        <div>{item.job.company_name}</div>
+                        <div>{item.job.title}</div>
                         <div>{item.due_date}</div>
                       </div>
                     </Col>

@@ -55,11 +55,28 @@ const JobIndex = () => {
                     </Col>
                     <Col>
                       <div className='index-item box' >
-                        <div>Company Name Here</div>
+                        <div>{item.company_name}</div>
                         <div>{item.title}</div>
                         <div>{item.job_type}</div>
                         <div>{item.job_status}</div>
-                        <div>Activities List Here</div>
+                        <div>
+                          <ul>
+                            { item.activities.length > 0
+                              ?
+                              item.activities.map(activity => {
+                                return (
+                                  <li key={activity.id}>
+                                    {activity.category} {activity.due_date}
+                                  </li>
+                                )
+                              })
+                              :
+                              <>
+                                <Link to={'/add-activity'}>Add an activity</Link>
+                              </>
+                            }
+                          </ul>
+                        </div>
                       </div>
                     </Col>
                   </Row>

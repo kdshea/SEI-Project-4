@@ -11,7 +11,7 @@ class Job(models.Model):
   company_name = models.CharField(max_length=100, default=None)
   created_at = models.DateTimeField(auto_now_add=True)
   title = models.CharField(max_length=200, default=None)
-  post_date = models.DateField(auto_now=False, auto_now_add=False, default=None)
+  post_date = models.DateField(auto_now=False, auto_now_add=False, default=None, blank=True)
   location = models.CharField(max_length=250, default=None, blank=True)
   salary = models.CharField(max_length=50, default=None, blank=True)
   benefits = models.TextField(max_length=500, default=None, blank=True)
@@ -28,7 +28,7 @@ class Job(models.Model):
     (applied, 'Applied'),
     (interview, 'Interview'),
     (offer, 'Offer'),
-    (declined, 'Not Interested'),
+    (declined, 'Declined'),
   ]
   job_status = models.CharField(
     max_length=100,
