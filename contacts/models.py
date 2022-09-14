@@ -11,11 +11,11 @@ class Contact(models.Model):
   related_name="contacts", 
   on_delete=models.CASCADE
   )
-  company = models.ForeignKey(
-  'companies.Company',
-  related_name="contact",
-  on_delete= models.CASCADE
-  )
+  # company = models.ForeignKey(
+  # 'companies.Company',
+  # related_name="contact",
+  # on_delete= models.CASCADE
+  # )
   first_name = models.CharField(max_length=50, default=None)
   last_name = models.CharField(max_length=50, default=None)
   title = models.CharField(max_length=50, default=None, blank=True)

@@ -12,7 +12,6 @@ import Form from 'react-bootstrap/Form'
 
 const AddJobActivities = () => {
   const { jobId } = useParams()
-  console.log('job id', jobId)
   const navigate = useNavigate()
 
   const [ formData, setFormData ] = useState({
@@ -27,12 +26,9 @@ const AddJobActivities = () => {
 
   useEffect(() => {
     const payLoad = getPayLoad()
-    console.log('payLoad', payLoad.sub)
     const user = payLoad.sub.toString()
-    console.log('user', user)
     setFormData({ ...formData, owner: user, job: jobId })
   }, [])
-
 
   const [ errors, setErrors ] = useState(false)
   

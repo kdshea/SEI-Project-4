@@ -9,92 +9,89 @@ import API_URL from '../../config.js'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-// ! Need to add company first and pass companyId in useParams
-// ! Finish add company page first then come back to edit this one
-// const AddJobContact = () => {
-//   const { jobId } = useParams()
-//   const navigate = useNavigate()
 
-//   const [ formData, setFormData ] = useState({
-//     first_name: '',
-//     last_name: '',
-//     title: '',
-//     phone: '',
-//     email: '',
-//     owner: '',
-//     job: '',
-//   })
-//   const [checked, setChecked] = useState(false)
+const AddJobContact = () => {
+  const { jobId } = useParams()
+  const navigate = useNavigate()
 
-//   useEffect(() => {
-//     const payLoad = getPayLoad()
-//     const user = payLoad.sub.toString()
-//     setFormData({ ...formData, owner: user, job: jobId })
-//   }, [])
+  const [ formData, setFormData ] = useState({
+    first_name: '',
+    last_name: '',
+    title: '',
+    phone: '',
+    email: '',
+    owner: '',
+    job: '',
+  })
 
+  useEffect(() => {
+    const payLoad = getPayLoad()
+    const user = payLoad.sub.toString()
+    setFormData({ ...formData, owner: user, job: jobId })
+  }, [])
 
-//   const [ errors, setErrors ] = useState(false)
+  const [ errors, setErrors ] = useState(false)
   
-//   const handleChange = (event, error) => {
-//     setFormData({ ...formData, [event.target.name]: event.target.value })
-//     console.log('form data', formData)
-//   }
+  const handleChange = (event, error) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
+    console.log('form data', formData)
+  }
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault()
-//     try {
-//       console.log('form data ->', formData)
-//       const { data } = await axios.post(`${API_URL}/notes/`, formData, {
-//         headers: {
-//           Authorization: `Bearer ${getToken()}`,  
-//         },
-//       })
-//       console.log(data)
-//       navigate(`/jobs/${jobId}/notes`)
-//     } catch (error) {
-//       setErrors(true)
-//       console.log(error)
-//     }
-//   }
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      console.log('form data ->', formData)
+      const { data } = await axios.post(`${API_URL}/contacts/`, formData, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,  
+        },
+      })
+      console.log(data)
+      navigate(`/jobs/${jobId}/contacts`)
+    } catch (error) {
+      setErrors(true)
+      console.log(error)
+    }
+  }
 
 
-//   return (
-//     <>
-//       <div className='form-page'>
-//         <AddJobNav />
-//         <Container className='add-job'>
-//           <Row>
-//             <Form onSubmit={handleSubmit}>
-//               <Form.Group className="mb-3" >
-//                 <Form.Label>Excitement Level</Form.Label>
-//                 <Form.Control  onChange={handleChange} type="range" min="0" max="100" step="10" name="excitement" value={formData.excitement}  />
-//               </Form.Group>
-//               <Form.Group className="mb-3" >
-//                 <Form.Label>Notes</Form.Label>
-//                 <Form.Control onChange={handleChange} type="textarea" name="notes" placeholder="+ add Notes" value={formData.notes} /> 
-//               </Form.Group>
-//               <Form.Group className="mb-3" >
-//                 <Form.Label>Questions</Form.Label>
-//                 <Form.Control onChange={handleChange} type="textarea" name="questions" placeholder="+ add Questions" value={formData.questions} /> 
-//               </Form.Group>
-//               <Form.Group className="mb-3" >
-//                 <Form.Label>Pros</Form.Label>
-//                 <Form.Control onChange={handleChange} type="textarea" name="pros" placeholder="+ add Pro" value={formData.pros} /> 
-//               </Form.Group>
-//               <Form.Group className="mb-3" >
-//                 <Form.Label>Cons</Form.Label>
-//                 <Form.Control onChange={handleChange} type="textarea" name="cons" placeholder="+ add Con" value={formData.cons} /> 
-//               </Form.Group>
-//               { errors && <p className='text-danger'>{errors}</p>}
-//               <Button variant="primary" type="submit">
-//                 Save
-//               </Button>
-//             </Form>
-//           </Row>
-//         </Container>
-//       </div>
-//     </>
-//   )
-// }
+  return (
+    <>
+      <div className='form-page'>
+        <AddJobNav />
+        <Container className='add-job'>
+          <Row>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" >
+                <Form.Label>First</Form.Label>
+                <Form.Control onChange={handleChange} type="text" name="first_name" placeholder="+ add First Name" value={formData.first_name} /> 
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label>Last</Form.Label>
+                <Form.Control onChange={handleChange} type="text" name="last_name" placeholder="+ add Last Name" value={formData.last_name} /> 
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label>Title</Form.Label>
+                <Form.Control onChange={handleChange} type="text" name="title" placeholder="+ add Job Title" value={formData.title} /> 
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label><i className="fa-solid fa-phone"></i> Phone</Form.Label>
+                <Form.Control onChange={handleChange} type="text" name="phone" placeholder="+ add Number" value={formData.phone} /> 
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label><i className="fa-solid fa-envelope"></i> Email</Form.Label>
+                <Form.Control onChange={handleChange} type="text" name="email" placeholder="+ add Email" value={formData.email} /> 
+              </Form.Group>
+              { errors && <p className='text-danger'>{errors}</p>}
+              <Button variant="primary" type="submit">
+                Save
+              </Button>
+            </Form>
+          </Row>
+        </Container>
+      </div>
+    </>
+  )
+}
 
-// export default AddJobNote
+export default AddJobContact

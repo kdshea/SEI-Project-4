@@ -20,7 +20,9 @@ import EditJobActivities from './components/EditJob/EditJobActivities'
 import AddJobNote from './components/AddJob/AddJobNote'
 import JobNote from './components/Job/JobNote'
 import EditJobNote from './components/EditJob/EditJobNote'
-
+import AddJobContacts from './components/AddJob/AddJobContact'
+import JobContacts from './components/Job/JobContacts'
+import EditJobContact from './components/EditJob/EditJobContact'
 
 function App() {
   return (
@@ -46,6 +48,11 @@ function App() {
           <Route path='/add-job/:jobId/note' element={<AddJobNote />} />
           <Route path='/jobs/:jobId/notes' element={<JobNote />} />
           <Route path='/edit-note/job:jobId/:noteId' element={<EditJobNote />} />
+          <Route path='/add-job/:jobId/contacts' element={<AddJobContacts />} />
+          <Route path='/jobs/:jobId/contacts' element={<JobContacts />} />
+          <Route path='/edit-contact/job:jobId/:contactId' element={<EditJobContact />} />
+
+          
         </Routes>
         <Footer />
       </BrowserRouter>
