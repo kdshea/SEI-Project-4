@@ -1,16 +1,16 @@
 import axios from 'axios'
-import { getToken } from './helpers/auth'
+import { getToken } from '../helpers/auth'
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
-import API_URL from '../config.js'
-import Spinner from './Spinner.js'
+import API_URL from '../../config.js'
+import Spinner from '../Spinner.js'
+import ActivityIndexNav from './ActivityIndexNav'
 
-
-const ActivityIndex = () => {
+const AllActivities = () => {
 
   const [ activityData, setActivityData ] = useState([])
   const [ errors, setErrors ] = useState(false)
@@ -33,12 +33,13 @@ const ActivityIndex = () => {
 
   return (
     <>
+
       { activityData[0] ?
         <div>
           <Container as="main" >
 
 
-            <h1>Breadcrumb Nav Here</h1>
+            <ActivityIndexNav />
 
             { activityData.map(item => {
               const { id } = item
@@ -90,4 +91,4 @@ const ActivityIndex = () => {
   )
 }
 
-export default ActivityIndex
+export default AllActivities
