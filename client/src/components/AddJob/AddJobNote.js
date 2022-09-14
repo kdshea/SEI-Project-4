@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form'
 
 
 const AddJobNote = () => {
+
   const { jobId } = useParams()
   const navigate = useNavigate()
 
@@ -24,15 +25,13 @@ const AddJobNote = () => {
     job: '',
   })
   const [checked, setChecked] = useState(false)
+  const [ errors, setErrors ] = useState(false)
 
   useEffect(() => {
     const payLoad = getPayLoad()
     const user = payLoad.sub.toString()
     setFormData({ ...formData, owner: user, job: jobId })
   }, [])
-
-
-  const [ errors, setErrors ] = useState(false)
   
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import EditJobNav from './EditJobNav'
+import JobNav from '../Job/JobNav'
 import { getToken, getPayLoad } from '../helpers/auth'
 import { useState, useEffect } from 'react'
 import  Container from 'react-bootstrap/Container'
@@ -72,7 +72,7 @@ const EditJobDetails = () => {
 
   return (
     <>
-      <EditJobNav { ...jobId } />
+      <JobNav { ...jobId } />
       <div className='form-page'>
         <Container className='add-job'>
           <Row>

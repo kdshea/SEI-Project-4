@@ -36,7 +36,7 @@ const JobDetails = () => {
   return (
     <>
       <JobNav />
-      <div className='job-details'>
+      <div>
         <Container>
           { job ? 
             <div className="kitchen-sink">

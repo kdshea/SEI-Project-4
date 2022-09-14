@@ -20,7 +20,7 @@ const JobNav = () => {
           },
         })
         setJob(data)
-        console.log('data', data)
+        console.log('nav data', data)
 
       } catch (error) {
         setErrors(error.message)
@@ -45,6 +45,9 @@ const JobNav = () => {
           <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}`}>Job Details</Nav.Link> 
         </Nav.Item>
         <Nav.Item>
+          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/company`} >Company</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/activities`}>Activities</Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -55,9 +58,6 @@ const JobNav = () => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/documents`} >Documents</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/company`} >Company</Nav.Link>
         </Nav.Item>
       </Nav>
     </>

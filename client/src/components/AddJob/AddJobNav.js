@@ -17,7 +17,7 @@ const AddJobNav = () => {
         <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/add-job/${jobId}/activities`}>Activities</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/add-job/${jobId}/notes`} >Notes</Nav.Link>
+        <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/add-job/${jobId}/note`} >Notes</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/add-job/${jobId}/contacts`} >Contacts</Nav.Link>

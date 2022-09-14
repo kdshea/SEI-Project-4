@@ -26,7 +26,6 @@ const JobNote = () => {
           },
         })
         setNoteData(data)
-        console.log('all note data', data)
       } catch (error) {
         setErrors(error.message)
         console.log(error.message)
@@ -40,7 +39,7 @@ const JobNote = () => {
       { noteData ?
         <>
           <JobNav />
-          <div className='job-details'>
+          <div>
             <Container>
               {  noteData.map(note => {
                 const { id } = note

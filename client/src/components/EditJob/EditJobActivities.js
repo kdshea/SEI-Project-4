@@ -1,5 +1,5 @@
 import axios from 'axios'
-import EditJobNav from './EditJobNav'
+import JobNav from '../Job/JobNav'
 import { getToken, getPayLoad } from '../helpers/auth'
 import { useState, useEffect } from 'react'
 import  Container from 'react-bootstrap/Container'
@@ -11,7 +11,6 @@ import Form from 'react-bootstrap/Form'
 
 
 const EditJobActivities = () => {
-
 
   const { activityId } = useParams()
   const navigate = useNavigate()
@@ -74,7 +73,7 @@ const EditJobActivities = () => {
   return (
     <>
       <div className='form-page'>
-        <EditJobNav />
+        <JobNav />
         <Container className='add-job'>
           <Row>
             <Form onSubmit={handleSubmit}>

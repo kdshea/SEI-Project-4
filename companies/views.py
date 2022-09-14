@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
 
 from .models import Company
+from jobs.models import Job
 from .serializers.common import CompanySerializer
 # from .serializer.populated import PopulatedCompanySerializer
 
@@ -73,3 +74,27 @@ class CompanyDetailView(APIView):
       company_to_delete.delete()
       return Response(status=status.HTTP_204_NO_CONTENT)
 
+class CompanyByJobView(APIView):
+  permission_classes = [IsAuthenticated]
+
+  def get_job(self, pk):
+    try:
+      return Job.objects.get(pk=pk)
+    except Job.DoesNotExist:
+      raise NotFound(detail="Job not found.")
+
+  def get_company(self, pk):
+    try:
+      return Company.objects.filter(job=pk)
+    except Company.DoesNotExist:
+      raise NotFound(detail="No company found for this job.")
+
+  # GET
+  # Get company by job id
+  def get(self, request, pk):
+      job = self.get_job(pk)
+      if job.owner != request.user:
+        raise PermissionDenied("Unauthorized")
+      company = self.get_company(pk=pk)
+      serialized_company = CompanySerializer(company, many=True)
+      return Response(serialized_company.data)
