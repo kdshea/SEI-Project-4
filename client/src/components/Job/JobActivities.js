@@ -14,7 +14,7 @@ import Form from 'react-bootstrap/Form'
 
 const JobActivities = () => {
   const { jobId } = useParams()
-  const [ activityData, setActivityData ] = useState([])
+  const [ activityData, setActivityData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
 
 
@@ -37,7 +37,7 @@ const JobActivities = () => {
 
   return (
     <>
-      { activityData[0] ?
+      { activityData ?
         <>
           <JobNav />
           <div>
@@ -82,6 +82,7 @@ const JobActivities = () => {
                 )
               })
               }
+              <Link to={`/add-job/${jobId}/activities`}>Add An activity</Link>
             </Container>
           </div>
         </>

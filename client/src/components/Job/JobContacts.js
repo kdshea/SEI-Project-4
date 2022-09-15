@@ -12,7 +12,7 @@ import Card from 'react-bootstrap/Card'
 
 const JobActivities = () => {
   const { jobId } = useParams()
-  const [ contactData, setContactData ] = useState([])
+  const [ contactData, setContactData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
 
 
@@ -35,7 +35,7 @@ const JobActivities = () => {
 
   return (
     <>
-      { contactData[0] ?
+      { contactData ?
         <>
           <JobNav />
           <div>
@@ -72,6 +72,7 @@ const JobActivities = () => {
                 )
               })
               }
+              <Link to={`/add-job/${jobId}/contacts`}>Add A Contact</Link>
             </Container>
           </div>
         </>

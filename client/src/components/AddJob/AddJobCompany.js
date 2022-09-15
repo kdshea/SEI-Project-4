@@ -53,7 +53,6 @@ const AddJobCompany = () => {
       const { data } = await axios.post('https://linkedin-company-data.p.rapidapi.com/linkedInCompanyData', linkedInUrl, {
         headers: {
           'X-RapidAPI-KEY': '12a3376f07msh1d4632ebeec3cb3p13b8acjsn584060f07fc0',
-          // 'X-RapidAPI-KEY': process.env.API_KEY,
           'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com', 
         },
       })
@@ -79,7 +78,7 @@ const AddJobCompany = () => {
         },
       })
       console.log(data)
-      navigate(`/jobs/job${jobId}/${data.id}`)
+      navigate(`/jobs/${jobId}/company`)
     } catch (error) {
       setErrors(true)
       console.log(error)

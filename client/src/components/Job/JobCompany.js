@@ -24,7 +24,7 @@ const JobDetails = () => {
             Authorization: `Bearer ${getToken()}`,  
           },
         })
-        setCompany(data[0])
+        setCompany(data)
         console.log('data', data)
       } catch (error) {
         setErrors(error.message)
@@ -39,52 +39,56 @@ const JobDetails = () => {
       <JobNav />
       <div>
         <Container>
-          { company ? 
-            <div className="kitchen-sink">
-              <Card>
-                {/* <Card.Img variant="top" src="" /> */}
-                <Card.Body>
-                  <Card.Title>{company.name}</Card.Title>
-                  {/* <Card.Text>
-                Some quick example text to build on the card title and make up 
-                  </Card.Text> */}
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                  <ListGroup.Item>
-                    <div>Industry</div>
-                    <div>{company.industry}</div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div>Founded</div>
-                    <div>{company.founded}</div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div>Location</div>
-                    <div>{company.hq_location}</div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div>Size</div>
-                    <div>{company.size}</div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div>Type</div>
-                    <div>{company.type}</div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div>Website</div>
-                    <div>{company.company_url}</div>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <div>Description</div>
-                    <div>{company.description}</div>
-                  </ListGroup.Item>
-                </ListGroup>
-                <Card.Body>
-                  <Link to={`/edit-company/job${company.job}/${company.id}`}><Button variant="primary">Edit</Button></Link>
-                  
-                </Card.Body>
-              </Card>
-            </div>
+          { company ?
+            (company[0]
+              ?
+              <div className="kitchen-sink">
+                <Card>
+                  {/* <Card.Img variant="top" src="" /> */}
+                  <Card.Body>
+                    <Card.Title>{company.name}</Card.Title>
+                    {/* <Card.Text>
+                  Some quick example text to build on the card title and make up 
+                    </Card.Text> */}
+                  </Card.Body>
+                  <ListGroup className="list-group-flush">
+                    <ListGroup.Item>
+                      <div>Industry</div>
+                      <div>{company.industry}</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <div>Founded</div>
+                      <div>{company.founded}</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <div>Location</div>
+                      <div>{company.hq_location}</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <div>Size</div>
+                      <div>{company.size}</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <div>Type</div>
+                      <div>{company.type}</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <div>Website</div>
+                      <div>{company.company_url}</div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <div>Description</div>
+                      <div>{company.description}</div>
+                    </ListGroup.Item>
+                  </ListGroup>
+                  <Card.Body>
+                    <Link to={`/edit-company/job${company.job}/${company.id}`}><Button variant="primary">Edit</Button></Link>
+                    
+                  </Card.Body>
+                </Card>
+              </div>
+              :
+              <Link to={`/add-job/${jobId}/company`}>Add Company</Link>)
             :
             <h2 className="text-center">
               { errors ? 'Something went wrong. Please try again later' : <Spinner />}

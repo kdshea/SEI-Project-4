@@ -35,7 +35,7 @@ const Register = () => {
     try {
       console.log('form data ->', formData)
       const { data } = await axios.post(`${API_URL}/auth/register/`, formData)
-      console.log(data)
+      console.log('data', data)
       // autoLogin()
     } catch (error) {
       setErrors(true)

@@ -22,9 +22,9 @@ const AddJobNav = () => {
       <Nav.Item>
         <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/add-job/${jobId}/contacts`} >Contacts</Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      {/* <Nav.Item>
         <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/add-job/${jobId}/documents`} >Documents</Nav.Link>
-      </Nav.Item>
+      </Nav.Item> */}
     </Nav>
   )
 }
