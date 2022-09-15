@@ -4,7 +4,7 @@ import handshakeImg from '../img/handshake.jpg'
 
 const Landing = () => {
   return (
-    <main>
+    <main className='landing'>
       <section>
         <div>
           <img src={computerImg} alt="Researching on a computer" />

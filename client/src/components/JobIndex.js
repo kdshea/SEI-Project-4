@@ -1,23 +1,26 @@
 import axios from 'axios'
-import { getToken } from '../helpers/auth'
+import { getToken } from './helpers/auth'
 import { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Nav } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
-import API_URL from '../../config.js'
-import Spinner from '../Spinner.js'
+import API_URL from '../config.js'
+import Spinner from './Spinner.js'
 
 
 const JobIndex = () => {
 
   const [ jobData, setJobData ] = useState([])
   const [ errors, setErrors ] = useState(false)
+  const [ filter, setFilter ] = useState('')
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/jobs/`, {
+        console.log('filter', filter)
+        const { data } = await axios.get(`${API_URL}/jobs/${filter}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,  
           },
@@ -29,18 +32,20 @@ const JobIndex = () => {
       }
     } 
     getData()
-  }, [])
+  }, [filter])
 
   return (
     <>
-      { jobData[0] ?
+      { jobData ?
         <div>
           <Container fluid as="main" >
-
-
-            <h1>Breadcrumb Arrow Nav Here</h1>
-            {/* http://jsfiddle.net/4vrys/ */}
-
+            <Nav variant="tabs">
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('')} >All</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusApplied/')}>Applied</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusInterview/')}>Interview</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusOffer/')}>Offer</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusDeclined/')}>Declined</Nav.Item>
+            </Nav>
             { jobData.map(item => {
               const { id } = item
               return (

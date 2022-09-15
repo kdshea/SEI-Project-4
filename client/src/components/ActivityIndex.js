@@ -1,24 +1,24 @@
 import axios from 'axios'
-import { getToken } from '../helpers/auth'
+import { getToken } from './helpers/auth'
 import { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Nav, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
-import API_URL from '../../config.js'
-import Spinner from '../Spinner.js'
-import ActivityIndexNav from './ActivityIndexNav'
+import API_URL from '../config.js'
+import Spinner from './Spinner.js'
 
 const AllActivities = () => {
 
   const [ activityData, setActivityData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
+  const [ filter, setFilter ] = useState('')
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`${API_URL}/activities/`, {
+        const { data } = await axios.get(`${API_URL}/activities/${filter}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,  
           },
@@ -31,7 +31,23 @@ const AllActivities = () => {
       }
     } 
     getData()
-  }, [])
+  }, [filter])
+
+  const upcomingFilter = async (event) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.get(`${API_URL}/activities/upcoming/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,  
+        },
+      })
+      setActivityData(data)
+      console.log('new filter')
+    } catch (error) {
+      setErrors(true)
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -40,8 +56,13 @@ const AllActivities = () => {
         ?
         <div>
           <Container as="main" >
-            <ActivityIndexNav />
-
+            <Nav variant="tabs">
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('')} >All Activities</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('today/')}>Due Today</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('upcoming/')}>Past Due</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('completedFalse/')}>Incomplete</Nav.Item>
+              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('completedTrue/')}>Completed</Nav.Item>
+            </Nav>
             { activityData.map(item => {
               const { id } = item
               return (
