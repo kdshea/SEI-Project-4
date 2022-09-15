@@ -1,5 +1,5 @@
 import axios from 'axios'
-import AddJobNav from './AddJobNav'
+import JobNav from './../Job/JobNav'
 import { getToken, getPayLoad } from '../helpers/auth'
 import { useState, useEffect } from 'react'
 import  Container from 'react-bootstrap/Container'
@@ -14,6 +14,7 @@ const AddJobCompany = () => {
 
   const { jobId } = useParams()
   const navigate = useNavigate()
+  const [ companyImported, setCompanyImported ] = useState(0)
 
   const [ formData, setFormData ] = useState({
     name: '',
@@ -36,7 +37,7 @@ const AddJobCompany = () => {
     const payLoad = getPayLoad()
     const user = payLoad.sub.toString()
     setFormData({ ...formData, owner: user, job: jobId })
-  }, [])
+  }, [jobId, companyImported])
   
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -58,6 +59,7 @@ const AddJobCompany = () => {
       })
       console.log(data[0])
       setFormData({ ...formData, name: data[0].CompanyName, industry: data[0].Industries, founded: data[0].Founded, hq_location: data[0].Headquarters, size: data[0].CompanySize, type: data[0].Type, company_url: data[0].Website, description: data[0].Description })
+      setCompanyImported(companyImported + 1)
     } catch (error) {
       setErrors(true)
       console.log(error)
@@ -89,7 +91,7 @@ const AddJobCompany = () => {
   return (
     <>
       <div className='form-page'>
-        <AddJobNav />
+        <JobNav />
         <Container>
           <Row>
             <Form onSubmit={handleImport}>

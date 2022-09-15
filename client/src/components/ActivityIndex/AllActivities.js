@@ -12,8 +12,9 @@ import ActivityIndexNav from './ActivityIndexNav'
 
 const AllActivities = () => {
 
-  const [ activityData, setActivityData ] = useState([])
+  const [ activityData, setActivityData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -23,6 +24,7 @@ const AllActivities = () => {
           },
         })
         setActivityData(data)
+        console.log(data)
       } catch (error) {
         setErrors(error.message)
         console.log(error.message)
@@ -34,11 +36,10 @@ const AllActivities = () => {
   return (
     <>
 
-      { activityData[0] ?
+      { activityData 
+        ?
         <div>
           <Container as="main" >
-
-
             <ActivityIndexNav />
 
             { activityData.map(item => {

@@ -15,6 +15,7 @@ import Form from 'react-bootstrap/Form'
 const JobActivities = () => {
   const { jobId } = useParams()
   const [ activityData, setActivityData ] = useState(null)
+  const [ activitiesRemoved, setActivitiesRemoved ] = useState(0)
   const [ errors, setErrors ] = useState(false)
 
 
@@ -33,7 +34,23 @@ const JobActivities = () => {
       }
     } 
     getData()
-  }, [])
+  }, [jobId, activitiesRemoved])
+
+  const deleteActivity = async (event, activityId) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.delete(`${API_URL}/activities/${activityId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data)
+      setActivitiesRemoved(activitiesRemoved + 1)
+    } catch (error) {
+      setErrors(true)
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -73,8 +90,12 @@ const JobActivities = () => {
                       <Col md={1}>
                         <div className='box'>
                           <Link to={`/edit-activity/job${jobId}/${id}`}>
-                            <i className="fa-solid fa-pen-to-square"></i>
+                            <Button><i className="fa-solid fa-pen-to-square"></i></Button>
                           </Link>
+                          <Button variant="danger" onClick={event => deleteActivity(event, item.id)}>
+                            <i className="fa-solid fa-trash-can"></i>
+                          </Button>
+
                         </div>
                       </Col>
                     </Row>
@@ -82,7 +103,7 @@ const JobActivities = () => {
                 )
               })
               }
-              <Link to={`/add-job/${jobId}/activities`}>Add An activity</Link>
+              <Link to={`/add-job/${jobId}/activities`}><Button>Add An Activity</Button></Link>
             </Container>
           </div>
         </>

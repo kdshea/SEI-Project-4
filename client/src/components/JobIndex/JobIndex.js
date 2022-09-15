@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getToken } from '../helpers/auth'
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
-import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
@@ -55,10 +55,12 @@ const JobIndex = () => {
                     </Col>
                     <Col>
                       <div className='index-item box' >
-                        <div>{item.company_name}</div>
-                        <div>{item.title}</div>
-                        <div>{item.job_type}</div>
-                        <div>{item.job_status}</div>
+                        <Link to={`/jobs/${item.id}`}>
+                          <div>{item.company_name}</div>
+                          <div>{item.title}</div>
+                          <div>{item.job_type}</div>
+                          <div>{item.job_status}</div>
+                        </Link>
                         <div>
                           <ul>
                             { item.activities.length > 0
@@ -72,7 +74,7 @@ const JobIndex = () => {
                               })
                               :
                               <>
-                                <Link to={`/add-job/${id}/activities`}>Add an activity</Link>
+                                <Link to={`/add-job/${id}/activities`}><Button>Add An Activity</Button></Link>
                               </>
                             }
                           </ul>
@@ -84,6 +86,9 @@ const JobIndex = () => {
               )
             })
             }
+            <Link to={'/add-job'}>
+              <Button>Add A Job</Button>
+            </Link>
           </Container>
         </div>
         :

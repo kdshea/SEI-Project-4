@@ -1,5 +1,4 @@
 import axios from 'axios'
-import AddJobNav from './AddJobNav'
 import { getToken, getPayLoad } from '../helpers/auth'
 import { useState, useEffect } from 'react'
 import  Container from 'react-bootstrap/Container'
@@ -51,7 +50,7 @@ const AddJobDetails = () => {
         },
       })
       console.log(data)
-      navigate(`/add-job/${data.id}/activities`)
+      navigate(`/jobs/${data.id}`)
     } catch (error) {
       setErrors(true)
       console.log(error)
@@ -62,7 +61,6 @@ const AddJobDetails = () => {
   return (
     <>
       <div className='form-page'>
-        <AddJobNav />
         <Container className='add-job'>
           <Row>
             <Form onSubmit={handleSubmit}>

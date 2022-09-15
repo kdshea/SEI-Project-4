@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import API_URL from '../../config.js'
 import Container from 'react-bootstrap/Container'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -14,7 +14,7 @@ const JobDetails = () => {
   const { jobId } = useParams()
   const [ job, setJob ] = useState(null)
   const [ errors, setErrors ] = useState(false)
-
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getData = async () => {
@@ -32,6 +32,22 @@ const JobDetails = () => {
     }
     getData()
   }, [])
+
+  const deleteJob = async (event, jobId) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.delete(`${API_URL}/jobs/${jobId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data)
+      navigate('/jobs')
+    } catch (error) {
+      setErrors(true)
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -88,8 +104,10 @@ const JobDetails = () => {
                   </ListGroup.Item>
                 </ListGroup>
                 <Card.Body>
-                  <Link to={`/edit-job/${jobId}`}><Button variant="primary">Edit</Button></Link>
-                  
+                  <Link to={`/edit-job/${jobId}/`}>
+                    <Button><i className="fa-solid fa-pen-to-square"></i></Button>
+                  </Link>
+                  <Button variant="danger" onClick={event => deleteJob(event, jobId)}><i className="fa-solid fa-trash-can"></i></Button>
                 </Card.Body>
               </Card>
             </div>

@@ -48,7 +48,6 @@ const EditJobActivities = () => {
 
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
-    console.log('formData', formData)
   }
 
   const handleSubmit = async (event) => {

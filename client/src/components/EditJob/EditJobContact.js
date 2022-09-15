@@ -49,7 +49,6 @@ const AddJobContact = () => {
 
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
-    console.log('form data', formData)
   }
 
   const handleSubmit = async (event) => {

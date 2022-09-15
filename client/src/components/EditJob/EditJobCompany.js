@@ -12,7 +12,7 @@ import Form from 'react-bootstrap/Form'
 
 const EditJobCompany = () => {
 
-  const { companyId } = useParams()
+  const { jobId, companyId } = useParams()
   const navigate = useNavigate()
   const payLoad = getPayLoad()
   const user = payLoad.sub.toString()

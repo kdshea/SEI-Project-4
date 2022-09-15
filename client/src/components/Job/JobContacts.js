@@ -13,6 +13,7 @@ import Card from 'react-bootstrap/Card'
 const JobActivities = () => {
   const { jobId } = useParams()
   const [ contactData, setContactData ] = useState(null)
+  const [ contactsRemoved, setContactsRemoved ] = useState(0)
   const [ errors, setErrors ] = useState(false)
 
 
@@ -31,7 +32,23 @@ const JobActivities = () => {
       }
     } 
     getData()
-  }, [])
+  }, [jobId, contactsRemoved])
+
+  const deleteContact = async (event, contactId) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.delete(`${API_URL}/contacts/${contactId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data)
+      setContactsRemoved(contactsRemoved + 1)
+    } catch (error) {
+      setErrors(true)
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -63,8 +80,11 @@ const JobActivities = () => {
                           </ListGroup.Item>
                         </ListGroup>
                         <Card.Body>
-                          <Link to={`/edit-contact/job${jobId}/${item.id}`}><Button variant="primary">Edit</Button></Link>
-                          
+                          {/* <Link to={`/edit-contact/job${jobId}/${item.id}`}><Button variant="primary">Edit</Button></Link> */}
+                          <Link to={`/edit-contact/job${jobId}/${item.id}`}>
+                            <Button><i className="fa-solid fa-pen-to-square"></i></Button>
+                          </Link>
+                          <Button variant="danger" onClick={event => deleteContact(event, item.id)}><i className="fa-solid fa-trash-can"></i></Button>
                         </Card.Body>
                       </Card>
                     </div>
@@ -72,7 +92,7 @@ const JobActivities = () => {
                 )
               })
               }
-              <Link to={`/add-job/${jobId}/contacts`}>Add A Contact</Link>
+              <Link to={`/add-job/${jobId}/contacts`}><Button>Add A Contact</Button></Link>
             </Container>
           </div>
         </>

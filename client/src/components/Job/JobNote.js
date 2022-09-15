@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import API_URL from '../../config.js'
 import Container from 'react-bootstrap/Container'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -15,7 +15,7 @@ const JobNote = () => {
   const { jobId } = useParams()
   const [ noteData, setNoteData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
-
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getData = async () => {
@@ -34,13 +34,30 @@ const JobNote = () => {
     getData()
   }, [])
 
+  const deleteNote = async (event, noteId) => {
+    event.preventDefault()
+    try {
+      const { data } = await axios.delete(`${API_URL}/notes/${noteId}/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data)
+      navigate(`/add-job/${jobId}/note`)
+    } catch (error) {
+      setErrors(true)
+      console.log(error)
+    }
+  }
+
+
   return (
     <>
+      <JobNav />
       { noteData ?
         (noteData[0]
           ?
           <>
-            <JobNav />
             <div>
               <Container>
                 {  noteData.map(note => {
@@ -83,7 +100,10 @@ const JobNote = () => {
                             </ListGroup.Item>
                           </ListGroup>
                           <Card.Body>
-                            <Link to={`/edit-note/job${jobId}/${note.id}`}><Button variant="primary">Edit</Button></Link>
+                            <Link to={`/edit-note/job${jobId}/${note.id}`}>
+                              <Button><i className="fa-solid fa-pen-to-square"></i></Button>
+                            </Link>
+                            <Button variant="danger" onClick={event => deleteNote(event, note.id)}><i className="fa-solid fa-trash-can"></i></Button>
                             
                           </Card.Body>
                         </Card>
@@ -96,7 +116,7 @@ const JobNote = () => {
             </div>
           </>
           :               
-          <Link to={`/add-job/${jobId}/note`}>Add A Note</Link>)
+          <Link to={`/add-job/${jobId}/note`}><Button>Add A Note</Button></Link>)
         :
         <h2 className="text-center">
           { errors ? 'Something went wrong. Please try again later' : <Spinner />}
