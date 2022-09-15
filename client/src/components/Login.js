@@ -5,6 +5,8 @@ import API_URL from '../config.js'
 import { setToken } from './helpers/auth'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
 
 
 const Login = () => {
@@ -35,22 +37,25 @@ const Login = () => {
   
 
   return  (     
-    <main className='form-login justify-content-center'>
-      <Form onSubmit={onSubmit} className='login-form'>
-        <h1>Login</h1>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type='text' name='email' placeholder='Email' onChange={handleChange} value={loginData.email} />   
-        </Form.Group>
+    <main>
+      <Container className='login-form'>
+        <Row>
+          <Form onSubmit={onSubmit} >
+            <h1>Login</h1>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control type='text' name='email' placeholder='Email' onChange={handleChange} value={loginData.email} />   
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-        {errors && <div className='error'>{errors}</div>}
-      </Form>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
+            </Form.Group>
+            <Form.Group className='reg-btn'>
+              <Button type="submit"> Submit</Button>
+            </Form.Group>
+            {errors && <div className='error'>{errors}</div>}
+          </Form>
+        </Row>
+      </Container>
     </main>    
   )
 }

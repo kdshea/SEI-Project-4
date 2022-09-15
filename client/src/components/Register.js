@@ -55,8 +55,8 @@ const Register = () => {
   // }
 
   return (
-    <main className='form-page'>
-      <Container className='register-form' as='main'>
+    <main>
+      <Container className='register-form'>
         <Row>
           <h1>Register</h1>    
           <Form onSubmit={handleSubmit}>
@@ -78,9 +78,11 @@ const Register = () => {
               <Form.Control onChange={handleChange} type="password" name="password_confirmation" placeholder='Confirm Password' value={formData.password_confirmation} /> 
             </Form.Group>
             { errors && <p className='text-danger'>{errors}</p>}
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <Form.Group className='reg-btn'>
+              <Button type="submit">
+                Submit
+              </Button>
+            </Form.Group>
           </Form>
         </Row>
       </Container>

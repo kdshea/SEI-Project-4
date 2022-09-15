@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, useNavigate } from 'react-router-dom'
 import { userIsAuthenticated } from './helpers/auth'
+import logo from '../img/logo.jpg'
 
 
 const NavBar = () => {
@@ -15,37 +16,49 @@ const NavBar = () => {
   }
 
   return (
-    <Nav variant="tabs" defaultActiveKey="/home">
-      <Nav.Item>
-        <Navbar.Brand as={Link} to="/">Seeker</Navbar.Brand>
-      </Nav.Item>
+    <div className='nav-wrapper'>
       { userIsAuthenticated()
         ?
         <>
-          <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/add-job'>Add A Job</Nav.Link> 
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/activities'>Activities</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={'/jobs'} >Job Board</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}  onClick={handleLogOut}>Logout</Nav.Link>
-          </Nav.Item>
+          <Nav className='main-nav'>
+            <Nav.Item>
+              <Navbar.Brand as={Link} to="/jobs"><img width="75" height="75"src={logo} alt="Magnifying glass logo"/></Navbar.Brand>
+            </Nav.Item>
+          </Nav>
+
+          <Nav className='main-nav'>
+            <Nav.Item>
+              <Nav.Link as={Link} to='/add-job'>Add A Job</Nav.Link> 
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} to='/activities'>Activities</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link as={Link} to={'/jobs'} >Job Board</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link onClick={handleLogOut}>Logout</Nav.Link>
+            </Nav.Item>
+          </Nav>
         </>
         :
         <>
-          <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/register'>Register</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to='/login'>Login</Nav.Link>
-          </Nav.Item>
+          <Nav className='main-nav'>
+            <Nav.Item>
+              <Navbar.Brand as={Link} to="/jobs"><img width="100" height="100" className="d-inline-block align-top"src={logo} alt="Magnifying glass logo"/></Navbar.Brand>
+            </Nav.Item>
+          </Nav>
+          <Nav className='main-nav'>
+            <Nav.Item>
+              <Nav.Link as={Link} to='/register'>Register</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link  as={Link} to='/login'>Login</Nav.Link>
+            </Nav.Item>
+          </Nav>
         </>      
       }      
-    </Nav>
+    </div>
   )
 }
   

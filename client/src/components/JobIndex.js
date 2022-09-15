@@ -38,7 +38,7 @@ const JobIndex = () => {
     <>
       { jobData ?
         <div>
-          <Container fluid as="main" >
+          <Container className='job-index' >
             <Nav variant="tabs">
               <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('')} >All</Nav.Item>
               <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusApplied/')}>Applied</Nav.Item>
@@ -46,44 +46,51 @@ const JobIndex = () => {
               <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusOffer/')}>Offer</Nav.Item>
               <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusDeclined/')}>Declined</Nav.Item>
             </Nav>
+            <Row className='index-labels'>
+              <div style={{ width: '250px' }}>Company</div>
+              <div style={{ width: '200px' }}>Job Title</div>
+              <div style={{ width: '200px' }}>Job Type</div>
+              <div style={{ width: '200px' }}>Application Status</div>
+              <div style={{ width: '250px' }}>Activities</div>
+            </Row>
             { jobData.map(item => {
               const { id } = item
               return (
                 <>
-                  <Row key={id}>
+                  <Row key={id} className='index-row'>
                     <Col md={1}>
                       <div className='box'>
-                        <Link to={`/edit-job/${id}`}>
+                        <Link className='edit-btn' to={`/edit-job/${id}`}>
                           <i className="fa-solid fa-pen-to-square"></i>
                         </Link>
                       </div>
                     </Col>
                     <Col>
-                      <div className='index-item box' >
-                        <Link to={`/jobs/${item.id}`}>
-                          <div>{item.company_name}</div>
-                          <div>{item.title}</div>
-                          <div>{item.job_type}</div>
-                          <div>{item.job_status}</div>
+                      <div >
+                        <Link className='index-item box' to={`/jobs/${item.id}`}>
+                          <div style={{ width: '250px' }}>{item.company_name}</div>
+                          <div style={{ width: '200px' }}>{item.title}</div>
+                          <div style={{ width: '100px' }}>{item.job_type}</div>
+                          <div style={{ width: '100px' }}>{item.job_status}</div>
+                          <div>
+                            <ul>
+                              { item.activities.length > 0
+                                ?
+                                item.activities.map(activity => {
+                                  return (
+                                    <li style={{ width: '200px' }}key={activity.id}>
+                                      {activity.category} {activity.due_date}
+                                    </li>
+                                  )
+                                })
+                                :
+                                <>
+                                  <Link to={`/add-job/${id}/activities`}><Button>Add An Activity</Button></Link>
+                                </>
+                              }
+                            </ul>
+                          </div>
                         </Link>
-                        <div>
-                          <ul>
-                            { item.activities.length > 0
-                              ?
-                              item.activities.map(activity => {
-                                return (
-                                  <li key={activity.id}>
-                                    {activity.category} {activity.due_date}
-                                  </li>
-                                )
-                              })
-                              :
-                              <>
-                                <Link to={`/add-job/${id}/activities`}><Button>Add An Activity</Button></Link>
-                              </>
-                            }
-                          </ul>
-                        </div>
                       </div>
                     </Col>
                   </Row>

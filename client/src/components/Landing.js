@@ -1,3 +1,4 @@
+import '../styles/main.css'
 import { Link } from 'react-router-dom'
 import computerImg from '../img/computer.jpg'
 import handshakeImg from '../img/handshake.jpg'
@@ -5,7 +6,7 @@ import handshakeImg from '../img/handshake.jpg'
 const Landing = () => {
   return (
     <main className='landing'>
-      <section>
+      <section className='top'>
         <div>
           <img src={computerImg} alt="Researching on a computer" />
         </div>
@@ -13,11 +14,11 @@ const Landing = () => {
           <h2>Organize your job search</h2>
           <p>Manage all of your job applications in one place</p>
           <Link to='/register'>
-            <button>Sign Up For Free</button>
+            <button>Join Now</button>
           </Link>
         </div>
       </section>
-      <section>
+      <section className='bottom'>
         <div>
           <h2>How it works</h2>
           <ul>
@@ -32,11 +33,6 @@ const Landing = () => {
         <div>
           <img src={handshakeImg} alt="Shaking hands at a meeting" />
         </div>
-      </section>
-      <section>
-        <Link to='/register'>
-          <button>Join Now</button>
-        </Link>
       </section>
     </main>
   )
