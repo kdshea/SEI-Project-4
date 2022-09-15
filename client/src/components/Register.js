@@ -78,7 +78,7 @@ const Register = () => {
               <Form.Control onChange={handleChange} type="password" name="password_confirmation" placeholder='Confirm Password' value={formData.password_confirmation} /> 
             </Form.Group>
             { errors && <p className='text-danger'>{errors}</p>}
-            <Form.Group className='reg-btn'>
+            <Form.Group className='center-btn'>
               <Button type="submit">
                 Submit
               </Button>

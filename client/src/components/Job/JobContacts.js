@@ -56,43 +56,52 @@ const JobActivities = () => {
         <>
           <JobNav />
           <div>
-            <Container>
+            <Container className='contact-container'>
+              <div className='contact-details'>
+                { contactData.map(item => {
+                  const { id } = item
+                  return (
+                    <>
+                      <div className="kitchen-sink">
+                        <Card>
+                          {/* <Card.Img variant="top" src="" /> */}
+                          <Card.Body>
+                            <Card.Title className="title">{item.first_name} {item.last_name}</Card.Title>
+                            <Card.Text className='content'>{item.title}</Card.Text>
+                          </Card.Body>
+                          <ListGroup className="list-group-flush">
+                            <ListGroup.Item>
+                              <div><i className="fa-solid fa-phone"></i></div>
+                              <div className='content'>{item.phone}</div>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                              <div><i className="fa-solid fa-envelope"></i></div>
+                              <div className='content'>{item.email}</div>
+                            </ListGroup.Item>
 
-              { contactData.map(item => {
-                const { id } = item
-                return (
-                  <>
-                    <div className="kitchen-sink">
-                      <Card>
-                        {/* <Card.Img variant="top" src="" /> */}
-                        <Card.Body>
-                          <Card.Title>{item.first_name} {item.last_name}</Card.Title>
-                          <Card.Text>{item.title}</Card.Text>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush">
-                          <ListGroup.Item>
-                            <div><i className="fa-solid fa-phone"></i></div>
-                            <div>{item.phone}</div>
-                          </ListGroup.Item>
-                          <ListGroup.Item>
-                            <div><i className="fa-solid fa-envelope"></i></div>
-                            <div>{item.email}</div>
-                          </ListGroup.Item>
-                        </ListGroup>
-                        <Card.Body>
-                          {/* <Link to={`/edit-contact/job${jobId}/${item.id}`}><Button variant="primary">Edit</Button></Link> */}
-                          <Link to={`/edit-contact/job${jobId}/${item.id}`}>
-                            <Button><i className="fa-solid fa-pen-to-square"></i></Button>
-                          </Link>
-                          <Button variant="danger" onClick={event => deleteContact(event, item.id)}><i className="fa-solid fa-trash-can"></i></Button>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </>
-                )
-              })
-              }
-              <Link to={`/add-job/${jobId}/contacts`}><Button>Add A Contact</Button></Link>
+                            <Card.Body className='card-buttons' >
+                              <div>
+                                <Link to={`/edit-contact/job${jobId}/${item.id}`}>
+                                  <Button ><i style={{ fontSize: '10px' }}className="fa-solid fa-pen-to-square"></i></Button>
+                                </Link>
+                              </div>
+                              <div>
+                                <Button variant="danger" onClick={event => deleteContact(event, item.id)}><i style={{ fontSize: '10px' }}className="fa-solid fa-trash-can"></i></Button>
+                              </div>
+                            </Card.Body>
+                          </ListGroup>
+                        </Card>
+                      </div>
+                    </>
+                  )
+                })
+                }
+              </div>
+              <div className='center-btn' style={{ marginTop: '20px' }}>
+                <Link to={`/add-job/${jobId}/contacts`}>
+                  <Button>Add A Contact</Button>
+                </Link>
+              </div>
             </Container>
           </div>
         </>

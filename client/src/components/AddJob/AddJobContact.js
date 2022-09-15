@@ -62,30 +62,34 @@ const AddJobContact = () => {
         <Container className='add-job'>
           <Row>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" >
-                <Form.Label>First</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="first_name" placeholder="+ add First Name" value={formData.first_name} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Last</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="last_name" placeholder="+ add Last Name" value={formData.last_name} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Title</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="title" placeholder="+ add Job Title" value={formData.title} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label><i className="fa-solid fa-phone"></i> Phone</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="phone" placeholder="+ add Number" value={formData.phone} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label><i className="fa-solid fa-envelope"></i> Email</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="email" placeholder="+ add Email" value={formData.email} /> 
-              </Form.Group>
+              <div className='job-form'>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>First</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="first_name" placeholder="+ add First Name" value={formData.first_name} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Last</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="last_name" placeholder="+ add Last Name" value={formData.last_name} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="title" placeholder="+ add Job Title" value={formData.title} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label><i className="fa-solid fa-phone"></i> Phone</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="phone" placeholder="+ add Number" value={formData.phone} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label><i className="fa-solid fa-envelope"></i> Email</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="email" placeholder="+ add Email" value={formData.email} /> 
+                </Form.Group>
+              </div>
               { errors && <p className='text-danger'>{errors}</p>}
-              <Button variant="primary" type="submit">
-                Save
-              </Button>
+              <Form.Group className='center-btn'>
+                <Button type="submit">
+                  Save
+                </Button>
+              </Form.Group>
             </Form>
           </Row>
         </Container>

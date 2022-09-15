@@ -31,36 +31,35 @@ const JobNav = () => {
   }, [])
 
   return (
-    <>
+    <div>
       { job ?
         <>
-          <h1>{job.title}</h1>
-          <h2>{job.company_name}</h2>
+          <div className='nav-header'>
+            <h1>{job.title}</h1>
+            <h2>{job.company_name}</h2>
+          </div>
         </>
         :
         <></>
       }
-      <Nav variant="tabs">
+      <Nav variant="tabs" className='job-nav'>
         <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}`}>Job Details</Nav.Link> 
+          <Nav.Link as={Link} to={`/jobs/${jobId}`}>Job Details</Nav.Link> 
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/company`} >Company</Nav.Link>
+          <Nav.Link as={Link} to={`/jobs/${jobId}/company`} >Company</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/activities`}>Activities</Nav.Link>
+          <Nav.Link as={Link} to={`/jobs/${jobId}/activities`}>Activities</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/notes`} >Notes</Nav.Link>
+          <Nav.Link as={Link} to={`/jobs/${jobId}/notes`} >Notes</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/contacts`} >Contacts</Nav.Link>
+          <Nav.Link as={Link} to={`/jobs/${jobId}/contacts`} >Contacts</Nav.Link>
         </Nav.Item>
-        {/* <Nav.Item>
-          <Nav.Link style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }} as={Link} to={`/jobs/${jobId}/documents`} >Documents</Nav.Link>
-        </Nav.Item> */}
       </Nav>
-    </>
+    </div>
   )
 }
   

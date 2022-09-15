@@ -39,12 +39,22 @@ const JobIndex = () => {
       { jobData ?
         <div>
           <Container className='job-index' >
-            <Nav variant="tabs">
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('')} >All</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusApplied/')}>Applied</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusInterview/')}>Interview</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusOffer/')}>Offer</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('statusDeclined/')}>Declined</Nav.Item>
+            <Nav variant="tabs" className='job-nav'>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('')} >All</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('statusApplied/')}>Applied</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('statusInterview/')}>Interview</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('statusOffer/')}>Offer</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('statusDeclined/')}>Declined</Nav.Link>
+              </Nav.Item>
             </Nav>
             <Row className='index-labels'>
               <div style={{ width: '250px' }}>Company</div>
@@ -69,7 +79,7 @@ const JobIndex = () => {
                       <div >
                         <Link className='index-item box' to={`/jobs/${item.id}`}>
                           <div style={{ width: '250px' }}>{item.company_name}</div>
-                          <div style={{ width: '200px' }}>{item.title}</div>
+                          <div style={{ width: '200px' }} className='title'>{item.title}</div>
                           <div style={{ width: '100px' }}>{item.job_type}</div>
                           <div style={{ width: '100px' }}>{item.job_status}</div>
                           <div>

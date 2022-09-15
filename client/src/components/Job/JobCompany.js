@@ -54,7 +54,7 @@ const JobDetails = () => {
     <>
       <JobNav />
       <div>
-        <Container>
+        <Container className='job-details company-details'>
           { company ?
             (company[0]
               ?
@@ -62,49 +62,52 @@ const JobDetails = () => {
                 <Card>
                   {/* <Card.Img variant="top" src="" /> */}
                   <Card.Body>
-                    <Card.Title>{company[0].name}</Card.Title>
+                    <Card.Title className="title">{company[0].name}</Card.Title>
                     {/* <Card.Text>
                   Some quick example text to build on the card title and make up 
                     </Card.Text> */}
                   </Card.Body>
                   <ListGroup className="list-group-flush">
                     <ListGroup.Item>
-                      <div>Industry</div>
-                      <div>{company[0].industry}</div>
+                      <div className="label">Industry</div>
+                      <div className="content">{company[0].industry}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      <div>Founded</div>
-                      <div>{company[0].founded}</div>
+                      <div className="label">Founded</div>
+                      <div className="content">{company[0].founded}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      <div>Location</div>
-                      <div>{company[0].hq_location}</div>
+                      <div className="label">Location</div>
+                      <div className="content">{company[0].hq_location}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      <div>Size</div>
-                      <div>{company[0].size}</div>
+                      <div className="label">Size</div>
+                      <div className="content">{company[0].size}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      <div>Type</div>
-                      <div>{company[0].type}</div>
+                      <div className="label">Type</div>
+                      <div className="content">{company[0].type}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      <div>Website</div>
-                      <div>{company[0].company_url}</div>
+                      <div className="label">Website</div>
+                      <div className="content">{company[0].company_url}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                      <div>Description</div>
-                      <div>{company[0].description}</div>
+                      <div className="label">Description</div>
+                      <div className="content">{company[0].description}</div>
                     </ListGroup.Item>
                   </ListGroup>
-                  <Card.Body>
-                    {/* <Link to={`/edit-company/job${company.job}/${company.id}`}><Button variant="primary">Edit</Button></Link> */}
-                    <Link to={`/edit-company/job${company[0].job}/${company[0].id}`}>
-                      <Button><i className="fa-solid fa-pen-to-square"></i></Button>
-                    </Link>
-                    <Button variant="danger" onClick={event => deleteCompany(event, company[0].id)}>
-                      <i className="fa-solid fa-trash-can"></i>
-                    </Button>
+                  <Card.Body className='card-buttons'>
+                    <div>
+                      <Link to={`/edit-company/job${company[0].job}/${company[0].id}`}>
+                        <Button><i className="fa-solid fa-pen-to-square"></i></Button>
+                      </Link>
+                    </div>
+                    <div>
+                      <Button variant="danger" onClick={event => deleteCompany(event, company[0].id)}>
+                        <i className="fa-solid fa-trash-can"></i>
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </div>

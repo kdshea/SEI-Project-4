@@ -92,56 +92,65 @@ const AddJobCompany = () => {
     <>
       <div className='form-page'>
         <JobNav />
-        <Container>
+        <Container className='add-company'>
           <Row>
             <Form onSubmit={handleImport}>
-              <Form.Group className="mb-3" >
-                <Form.Label>Import Company Info from LinkedIn</Form.Label>
-                <Form.Control onChange={handleImportChange} type="text" name="linkedInUrl" placeholder="+ add Company LinkedIn URL
-Format:  https://www.linkedin.com/school/generalassembly/" value={linkedInUrl.url} /> 
+              <div >
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Import Company Info from LinkedIn</Form.Label>
+                  <Form.Control onChange={handleImportChange} style={{ width: '600px', height: '150px' }} as="textarea" name="linkedInUrl" placeholder={'+ add Company LinkedIn URL  \n Format:  https://www.linkedin.com/school/generalassembly/'} value={linkedInUrl.url} /> 
+                </Form.Group>
+              </div>
+              <Form.Group className='center-btn'>
+                <Button type="submit">
+                  Import Company
+                </Button>
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Import Company
-              </Button>
+
             </Form>
 
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" >
-                <Form.Label>Company Name</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="name" placeholder="+ add Name" value={formData.name} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Industry</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="industry" placeholder="+ add Industry" value={formData.industry} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Founded</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="founded" placeholder='+ add Year' value={formData.founded}  />
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Headquarters Location</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="hq_location" placeholder='+ add Location' value={formData.hq_location} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Size</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="size" placeholder='+ add Number of Employees' value={formData.size} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Type</Form.Label>
-                <Form.Control onChange={handleChange} type="text" name="type" placeholder='+ add Type' value={formData.type}  />
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Website</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="company_url" placeholder='+ add URL' value={formData.company_url} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Description</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="description" placeholder='+ add Description' value={formData.description} /> 
-              </Form.Group>
+              <div className='job-form'>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Company Name</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="name" placeholder="+ add Name" value={formData.name} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Industry</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="industry" placeholder="+ add Industry" value={formData.industry} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Founded</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="founded" placeholder='+ add Year' value={formData.founded}  />
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Headquarters Location</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="hq_location" placeholder='+ add Location' value={formData.hq_location} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Size</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="size" placeholder='+ add Number of Employees' value={formData.size} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Type</Form.Label>
+                  <Form.Control onChange={handleChange} type="text" name="type" placeholder='+ add Type' value={formData.type}  />
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Website</Form.Label>
+                  <Form.Control onChange={handleChange} as="textarea" name="company_url" placeholder='+ add URL' value={formData.company_url} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control onChange={handleChange} as="textarea" name="description" placeholder='+ add Description' value={formData.description} /> 
+                </Form.Group>
+              </div>
               { errors && <p className='text-danger'>{errors}</p>}
-              <Button variant="primary" type="submit">
-                Save
-              </Button>
+              <Form.Group className='center-btn'>
+                <Button type="submit">
+                  Save
+                </Button>
+              </Form.Group>
+
             </Form>
           </Row>
         </Container>

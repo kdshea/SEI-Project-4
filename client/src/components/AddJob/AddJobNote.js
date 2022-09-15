@@ -63,30 +63,33 @@ const AddJobNote = () => {
         <Container className='add-job'>
           <Row>
             <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" >
-                <Form.Label>Excitement Level</Form.Label>
-                <Form.Control  onChange={handleChange} type="range" min="0" max="100" step="10" name="excitement" value={formData.excitement}  />
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Notes</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="notes" placeholder="+ add Notes" value={formData.notes} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Questions</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="questions" placeholder="+ add Questions" value={formData.questions} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Pros</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="pros" placeholder="+ add Pro" value={formData.pros} /> 
-              </Form.Group>
-              <Form.Group className="mb-3" >
-                <Form.Label>Cons</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="cons" placeholder="+ add Con" value={formData.cons} /> 
-              </Form.Group>
+              <div className='job-form'>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Notes</Form.Label>
+                  <Form.Control onChange={handleChange} as="textarea" name="notes" placeholder="+ add Notes" value={formData.notes} /> 
+                </Form.Group>
+                <Form.Group >
+                  <Form.Label>Excitement Level</Form.Label>
+                  <Form.Range  onChange={handleChange} type="range" min="0" max="100" step="10" name="excitement" value={formData.excitement}  />
+                </Form.Group>
+
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Questions</Form.Label>
+                  <Form.Control onChange={handleChange} as="textarea" name="questions" placeholder="+ add Questions" value={formData.questions} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Pros</Form.Label>
+                  <Form.Control onChange={handleChange} as="textarea" name="pros" placeholder="+ add Pro" value={formData.pros} /> 
+                </Form.Group>
+                <Form.Group className="job-form-field" >
+                  <Form.Label>Cons</Form.Label>
+                  <Form.Control onChange={handleChange} as="textarea" name="cons" placeholder="+ add Con" value={formData.cons} /> 
+                </Form.Group>
+              </div>
               { errors && <p className='text-danger'>{errors}</p>}
-              <Button variant="primary" type="submit">
-                Save
-              </Button>
+              <Form.Group className='center-btn'>
+                <Button type="submit">Save</Button>
+              </Form.Group>
             </Form>
           </Row>
         </Container>

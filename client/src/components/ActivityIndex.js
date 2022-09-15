@@ -57,11 +57,21 @@ const AllActivities = () => {
         <div>
           <Container as="main" >
             <Nav variant="tabs">
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('')} >All Activities</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('today/')}>Due Today</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('upcoming/')}>Past Due</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('completedFalse/')}>Incomplete</Nav.Item>
-              <Nav.Item style={{ textDecoration: 'none', color: 'black', padding: '10px, 30px' }}onClick={() => setFilter('completedTrue/')}>Completed</Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('')} >All Activities</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('today/')}>Due Today</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('upcoming/')}>Past Due</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('completedFalse/')}>Incomplete</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setFilter('completedTrue/')}>Completed</Nav.Link>
+              </Nav.Item>
             </Nav>
             { activityData.map(item => {
               const { id } = item
@@ -70,8 +80,6 @@ const AllActivities = () => {
                   <Row key={id} >
                     <Col md={1}>
                       <div className='box'>
-                        {/*  https://stackoverflow.com/questions/42682406/how-to-get-values-properties-from-a-react-bootstrap-checkbox */}
-                        {/* https://react-bootstrap.github.io/forms/checks-radios/#form-check-props */}
                         <Form>
                           <Form.Check 
                             type="checkbox"

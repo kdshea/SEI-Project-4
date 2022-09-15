@@ -62,21 +62,21 @@ const AddJobDetails = () => {
     <>
       <div className='form-page'>
         <Container className='add-job'>
-          <Row>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" >
+          <Form onSubmit={handleSubmit}>
+            <div className='job-form'>
+              <Form.Group className="job-form-field" >
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="company_name" placeholder="+ add Name" value={formData.company_name} /> 
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Job Title</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="title" placeholder="+ add Title" value={formData.title} /> 
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Post Date</Form.Label>
                 <Form.Control  onChange={handleChange} type="date" name="post_date" placeholder='+ add Date' value={formData.post_date}  />
               </Form.Group>
-              <Form.Group>
+              <Form.Group className="job-form-field">
                 <Form.Label>Job Type</Form.Label>
                 <Form.Select onChange={handleChange} name="job_type" value={formData.job_type} aria-label="Default select example">
                   <option>+ add Job Type</option>
@@ -87,36 +87,38 @@ const AddJobDetails = () => {
                   <option value="Internship">Internship</option>
                 </Form.Select>
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Location</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="location" placeholder='+ add Location' value={formData.location} /> 
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Salary</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="salary" placeholder='+ add Salary' value={formData.salary}  />
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Benefits</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="benefits" placeholder='+ add Benefits' value={formData.benefits} /> 
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Post URL</Form.Label>
                 <Form.Control onChange={handleChange} type="text" name="job_url" placeholder='+ add URL' value={formData.job_url}  />
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Description</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="description" placeholder='+ add Description' value={formData.description} /> 
+                <Form.Control style={{ height: '150px' }} onChange={handleChange} as="textarea" name="description" placeholder='+ add Description' value={formData.description} /> 
               </Form.Group>
-              <Form.Group className="mb-3" >
+              <Form.Group className="job-form-field" >
                 <Form.Label>Requirements</Form.Label>
-                <Form.Control onChange={handleChange} type="textarea" name="requirements" placeholder='+ add Requirements' value={formData.requirements} /> 
+                <Form.Control style={{ height: '150px' }} onChange={handleChange} as="textarea" name="requirements" placeholder='+ add Requirements' value={formData.requirements} /> 
               </Form.Group>
-              { errors && <p className='text-danger'>{errors}</p>}
-              <Button variant="primary" type="submit">
+            </div>
+            { errors && <p className='text-danger'>{errors}</p>}
+            <Form.Group className='center-btn'>
+              <Button type="submit">
                 Save
               </Button>
-            </Form>
-          </Row>
+            </Form.Group>
+          </Form>
         </Container>
       </div>
     </>

@@ -53,61 +53,65 @@ const JobDetails = () => {
     <>
       <JobNav />
       <div>
-        <Container>
+        <Container className='job-details'>
           { job ? 
             <div className="kitchen-sink">
               <Card>
                 {/* <Card.Img variant="top" src="" /> */}
                 <Card.Body>
-                  <Card.Title>{job.title}</Card.Title>
-                  <Card.Title>{job.company_name}</Card.Title>
+                  <Card.Title className="title">{job.title}</Card.Title>
+                  <Card.Title className="title">{job.company_name}</Card.Title>
                   {/* <Card.Text>
                 Some quick example text to build on the card title and make up 
                   </Card.Text> */}
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroup.Item>
-                    <div>Post Date</div>
-                    <div>{job.post_date}</div>
+                    <div className="label">Status</div>
+                    <div className="content">{job.job_status}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Post URL</div>
-                    <div>{job.job_url}</div>
+                    <div className="label">Job Type</div>
+                    <div className="content">{job.job_type}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Job Type</div>
-                    <div>{job.job_type}</div>
+                    <div className="label">Location</div>
+                    <div className="content">{job.location}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Location</div>
-                    <div>{job.location}</div>
+                    <div className="label">Salary</div>
+                    <div className="content">{job.salary}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Salary</div>
-                    <div>{job.salary}</div>
+                    <div className="label">Benefits</div>
+                    <div className="content"> {job.benefits}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Benefits</div>
-                    <div> {job.benefits}</div>
+                    <div className="label">Description</div>
+                    <div className="content">{job.description}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Description</div>
-                    <div>{job.description}</div>
+                    <div className="label">Requirements</div>
+                    <div className="content">{job.requirements}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Requirements</div>
-                    <div>{job.requirements}</div>
+                    <div className="label">Post Date</div>
+                    <div className="content">{job.post_date}</div>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <div>Status</div>
-                    <div>{job.job_status}</div>
+                    <div className="label">Post URL</div>
+                    <div className="content">{job.job_url}</div>
                   </ListGroup.Item>
                 </ListGroup>
-                <Card.Body>
-                  <Link to={`/edit-job/${jobId}/`}>
-                    <Button><i className="fa-solid fa-pen-to-square"></i></Button>
-                  </Link>
-                  <Button variant="danger" onClick={event => deleteJob(event, jobId)}><i className="fa-solid fa-trash-can"></i></Button>
+                <Card.Body className='card-buttons'>
+                  <div>
+                    <Link to={`/edit-job/${jobId}/`}>
+                      <Button><i className="fa-solid fa-pen-to-square"></i></Button>
+                    </Link>
+                  </div>
+                  <div>
+                    <Button variant="danger" onClick={event => deleteJob(event, jobId)}><i className="fa-solid fa-trash-can"></i></Button>
+                  </div>
                 </Card.Body>
               </Card>
             </div>

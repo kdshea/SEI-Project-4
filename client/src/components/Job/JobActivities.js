@@ -63,7 +63,7 @@ const JobActivities = () => {
                 const { id } = item
                 return (
                   <>
-                    <Row key={id} >
+                    <Row className='index-row' key={id} >
                       <Col md={1}>
                         <div className='box'>
                           {/*  https://stackoverflow.com/questions/42682406/how-to-get-values-properties-from-a-react-bootstrap-checkbox */}
@@ -80,13 +80,12 @@ const JobActivities = () => {
                       </Col>
                       <Col>
                         <div className='index-item box'>
-                          <div>{item.category}</div>
-                          <div>{item.job.company_name}</div>
-                          <div>{item.job.title}</div>
-                          <div>{item.due_date}</div>
+                          <div className='title'>{item.category}</div>
+                          <div>Notes: {item.notes}</div>
+                          <div>Due: {item.due_date}</div>
                         </div>
                       </Col>
-                      <Col md={1}>
+                      <Col md={2}>
                         <div className='box'>
                           <Link to={`/edit-activity/job${jobId}/${id}`}>
                             <Button><i className="fa-solid fa-pen-to-square"></i></Button>

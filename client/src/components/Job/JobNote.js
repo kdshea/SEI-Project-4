@@ -59,52 +59,50 @@ const JobNote = () => {
           ?
           <>
             <div>
-              <Container>
+              <Container className="job-details note-details">
                 {  noteData.map(note => {
                   const { id } = note
                   return (
                     <>
                       <div className="kitchen-sink">
                         <Card>
-                          {/* <Card.Img variant="top" src="" /> */}
                           <Card.Body>
-                            {/* <Card.Title>Notes</Card.Title> */}
-                            {/* <Card.Text>
-                          Some quick example text to build on the card title and make up 
-                            </Card.Text> */}
+                            <ListGroup className="list-group-flush">
+                              <ListGroup.Item>
+                                <div className="title">Notes</div>
+                                <div className="content">{note.notes}</div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="label">Excitement Level</div>
+                                <div>
+                                  <Form.Group>
+                                    <Form.Control  type="range" min="0" max="100" step="10" name="excitement" value={note.excitement} />
+                                  </Form.Group>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="label">Questions</div>
+                                <div className="content">{note.questions}</div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="label">Pros</div>
+                                <div className="content">{note.pros}</div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="label">Cons</div>
+                                <div className="content">{note.cons}</div>
+                              </ListGroup.Item>
+                            </ListGroup>
                           </Card.Body>
-                          <ListGroup className="list-group-flush">
-                            <ListGroup.Item>
-                              <div>Excitement Level</div>
-                              <div>
-                                <Form.Group>
-                                  <Form.Control  type="range" min="0" max="100" step="10" name="excitement" value={note.excitement} />
-                                </Form.Group>
-                              </div>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <div>Notes</div>
-                              <div>{note.notes}</div>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <div>Questions</div>
-                              <div>{note.questions}</div>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <div>Pros</div>
-                              <div>{note.pros}</div>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                              <div>Cons</div>
-                              <div>{note.cons}</div>
-                            </ListGroup.Item>
-                          </ListGroup>
-                          <Card.Body>
-                            <Link to={`/edit-note/job${jobId}/${note.id}`}>
-                              <Button><i className="fa-solid fa-pen-to-square"></i></Button>
-                            </Link>
-                            <Button variant="danger" onClick={event => deleteNote(event, note.id)}><i className="fa-solid fa-trash-can"></i></Button>
-                            
+                          <Card.Body className='card-buttons'>
+                            <div>
+                              <Link to={`/edit-note/job${jobId}/${note.id}`}>
+                                <Button><i className="fa-solid fa-pen-to-square"></i></Button>
+                              </Link>
+                            </div>
+                            <div>
+                              <Button variant="danger" onClick={event => deleteNote(event, note.id)}><i className="fa-solid fa-trash-can"></i></Button>
+                            </div>
                           </Card.Body>
                         </Card>
                       </div>
