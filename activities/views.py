@@ -111,7 +111,7 @@ class ActivityByStatusView(APIView):
     # Get Activity by completed status
     def get(self, request, pk):
         activities = self.get_activity(pk)
-        serialized_activities = ActivitySerializer(activities.filter(owner=request.user), many=True)
+        serialized_activities = PopulatedActivitySerializer(activities.filter(owner=request.user), many=True)
         return Response(serialized_activities.data)
 
 class ActivityPastDueView(APIView):
@@ -119,7 +119,7 @@ class ActivityPastDueView(APIView):
     def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(due_date__lte=datetime.date(now.year, now.month, now.day))
+          return Activity.objects.filter(due_date__lt=datetime.date(now.year, now.month, now.day))
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -127,7 +127,7 @@ class ActivityPastDueView(APIView):
     # Get Activity by date
     def get(self, request):
         activities = self.get_activity()
-        serialized_activities = ActivitySerializer(activities, many=True)
+        serialized_activities = PopulatedActivitySerializer(activities, many=True)
         return Response(serialized_activities.data)
 
 class ActivityDueTodayView(APIView):
@@ -143,7 +143,7 @@ class ActivityDueTodayView(APIView):
     # Get Activity by date
     def get(self, request):
         activities = self.get_activity()
-        serialized_activities = ActivitySerializer(activities, many=True)
+        serialized_activities = PopulatedActivitySerializer(activities, many=True)
         return Response(serialized_activities.data)
 
 class ActivityUpcomingView(APIView):
@@ -151,7 +151,7 @@ class ActivityUpcomingView(APIView):
     def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(Q(due_date=datetime.date(now.year, now.month, now.day)) | Q(due_date__gte=datetime.date(now.year, now.month, now.day)))
+          return Activity.objects.filter(due_date__gte=datetime.date(now.year, now.month, now.day))
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -159,5 +159,5 @@ class ActivityUpcomingView(APIView):
     # Get Activity by date
     def get(self, request):
         activities = self.get_activity()
-        serialized_activities = ActivitySerializer(activities, many=True)
+        serialized_activities = PopulatedActivitySerializer(activities, many=True)
         return Response(serialized_activities.data)

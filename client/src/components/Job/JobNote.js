@@ -59,7 +59,7 @@ const JobNote = () => {
           ?
           <>
             <div>
-              <Container className="job-details note-details">
+              <Container className="job-details">
                 {  noteData.map(note => {
                   const { id } = note
                   return (

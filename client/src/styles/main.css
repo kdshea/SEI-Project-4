@@ -134,6 +134,10 @@ button {
   text-align: center;
 }
 
+.index-container {
+  min-height: calc(100vh - 150px);
+}
+
 .job-index {
   color: #364B85 a;
   color-color: #364B85;
@@ -155,6 +159,7 @@ button {
 .index-row {
   background-color: white;
   color: #364B85;
+  min-height: 70px;
   border: 1px solid #8AD2A8;
   border-radius: 8px;
   margin: 10px 0px 10px 0px;
@@ -188,7 +193,7 @@ button {
 
 .add-job, .add-company {
   max-width: 800px;
-  min-height: calc(100vh - 375px);
+  min-height: calc(100vh - 200px);
   margin-top: 50px;
 }
 
@@ -260,10 +265,12 @@ button {
 
 .company-details {
   max-width: 600px;
+  min-height: calc(100vh - 340px);
 }
 
 .note-details {
   max-width: 400px;
+  min-height: calc(100vh - 340px);
 }
 
 .contact-container {
@@ -294,6 +301,10 @@ button {
   text-align: center;
 }
 
+.card {
+  border: 1px solid #8AD2A8;
+}
+
 .card-buttons {
   margin: 0px;
   display: flex;
@@ -317,6 +328,9 @@ button {
 .footer p {
   font-size: 20px;
   margin-right: 30px;
+  color: #EB694C;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
 }
 .footer a {
   text-decoration: none;

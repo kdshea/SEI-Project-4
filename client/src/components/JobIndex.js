@@ -38,7 +38,7 @@ const JobIndex = () => {
     <>
       { jobData ?
         <div>
-          <Container className='job-index' >
+          <Container className='job-index index-container' >
             <Nav variant="tabs" className='job-nav'>
               <Nav.Item>
                 <Nav.Link onClick={() => setFilter('')} >All</Nav.Link>
@@ -108,7 +108,7 @@ const JobIndex = () => {
               )
             })
             }
-            <Link to={'/add-job'}>
+            <Link to={'/add-job'} className='center-btn'>
               <Button>Add A Job</Button>
             </Link>
           </Container>

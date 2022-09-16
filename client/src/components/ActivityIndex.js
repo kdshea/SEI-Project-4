@@ -55,7 +55,7 @@ const AllActivities = () => {
       { activityData 
         ?
         <div>
-          <Container as="main" >
+          <Container className='index-container' >
             <Nav variant="tabs">
               <Nav.Item>
                 <Nav.Link onClick={() => setFilter('')} >All Activities</Nav.Link>
@@ -77,7 +77,7 @@ const AllActivities = () => {
               const { id } = item
               return (
                 <>
-                  <Row key={id} >
+                  <Row className='index-row' key={id} >
                     <Col md={1}>
                       <div className='box'>
                         <Form>
@@ -92,7 +92,7 @@ const AllActivities = () => {
                     </Col>
                     <Col>
                       <div className='index-item box'>
-                        <div>{item.category}</div>
+                        <div className='title'>{item.category}</div>
                         <div>{item.job.company_name}</div>
                         <div>{item.job.title}</div>
                         <div>{item.due_date}</div>

@@ -157,6 +157,10 @@ button {
 
 // Job and Activity Index Styles
 
+.index-container {
+  min-height: calc(100vh - 150px);
+}
+
 .job-index{
   color: $dark-blue
   a{
@@ -184,6 +188,7 @@ button {
 .index-row{
   background-color: white;
   color: $dark-blue;
+  min-height: 70px;
   border: 1px solid $light-green;
   border-radius: 8px;
   margin: 10px 0px 10px 0px;
@@ -220,7 +225,7 @@ button {
 
 .add-job, .add-company{
   max-width: 800px;
-  min-height: calc(100vh - 375px);
+  min-height: calc(100vh - 200px);
   margin-top: 50px;
 }
 
@@ -299,10 +304,12 @@ button {
 
 .company-details{
   max-width: 600px;
+  min-height: calc(100vh - 340px);
 }
 
 .note-details{
   max-width: 400px;
+  min-height: calc(100vh - 340px);
 }
 
 // Styles for Contacts Page
@@ -334,6 +341,9 @@ button {
   }
 
 }
+.card{
+  border: 1px solid $light-green;
+}
 
 .card-buttons{
   margin: 0px;
@@ -360,6 +370,9 @@ button {
   p {
     font-size: 20px;
     margin-right: 30px;
+    color: $orange;
+    font-family: $body;  
+    font-weight: bold;
   }
   a {
     text-decoration: none;
