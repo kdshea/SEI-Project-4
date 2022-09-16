@@ -19,7 +19,6 @@ const AddJobCompany = () => {
   const [ formData, setFormData ] = useState({
     name: '',
     industry: '',
-    founded: '',
     hq_location: '',
     size: '',
     type: '',
@@ -124,10 +123,6 @@ const AddJobCompany = () => {
                 <Form.Group className="job-form-field" >
                   <Form.Label>Industry</Form.Label>
                   <Form.Control onChange={handleChange} type="text" name="industry" placeholder="+ add Industry" value={formData.industry} /> 
-                </Form.Group>
-                <Form.Group className="job-form-field" >
-                  <Form.Label>Founded</Form.Label>
-                  <Form.Control onChange={handleChange} type="text" name="founded" placeholder='+ add Year' value={formData.founded}  />
                 </Form.Group>
                 <Form.Group className="job-form-field" >
                   <Form.Label>Headquarters Location</Form.Label>

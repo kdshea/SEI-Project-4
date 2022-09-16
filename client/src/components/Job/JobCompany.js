@@ -13,6 +13,7 @@ import  Button  from 'react-bootstrap/Button'
 const JobDetails = () => {
   const { jobId } = useParams()
   const [ company, setCompany ] = useState(null)
+  const [ companyDeleted, setCompanyDeleted ] = useState(0)
   const [ errors, setErrors ] = useState(false)
   const navigate = useNavigate()
 
@@ -32,7 +33,7 @@ const JobDetails = () => {
       }
     }
     getData()
-  }, [])
+  }, [jobId, companyDeleted])
 
   const deleteCompany = async (event, companyId) => {
     event.preventDefault()
@@ -43,7 +44,7 @@ const JobDetails = () => {
         },
       })
       console.log(data)
-      navigate(`/add-job/${jobId}/company`)
+      setCompanyDeleted(companyDeleted + 1)
     } catch (error) {
       setErrors(true)
       console.log(error)
@@ -71,10 +72,6 @@ const JobDetails = () => {
                     <ListGroup.Item>
                       <div className="label">Industry</div>
                       <div className="content">{company[0].industry}</div>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <div className="label">Founded</div>
-                      <div className="content">{company[0].founded}</div>
                     </ListGroup.Item>
                     <ListGroup.Item>
                       <div className="label">Location</div>

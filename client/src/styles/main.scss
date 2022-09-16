@@ -22,6 +22,7 @@ body {
 .btn-primary {
   background-color: $light-blue;
   border: none;
+  text-decoration: none;
   &:hover {
     border: 1px solid $dark-blue;
     color: $orange;
@@ -291,7 +292,7 @@ button {
 }
 
 
-// Styles for Job, Contacts, Notes, Company pages
+// Styles for Job, Contacts, Activities, Notes, Company pages
 
 .job-details{
   max-width: 900px;
@@ -319,6 +320,10 @@ button {
 .company-details{
   max-width: 600px;
   min-height: calc(100vh - 340px);
+}
+
+.activity-container{
+  margin-top: 50px;
 }
 
 .note-details{

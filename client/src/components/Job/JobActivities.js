@@ -108,7 +108,7 @@ const JobActivities = () => {
         <>
           <JobNav />
           <div>
-            <Container className='contact-container'>
+            <Container className='contact-container activity-container'>
 
               { activityData.map(item => {
                 const { id } = item
@@ -131,7 +131,7 @@ const JobActivities = () => {
                       <Col>
                         <div className='index-item box'>
                           <div className='title' style={ item.completed_status ? { color: '#6D8CDF', fontWeight: 'normal' } : { color: '#364B85' } }>{item.category}</div>
-                          <div>Notes: {item.notes}</div>
+                          <div>{item.notes}</div>
                           <div>Due: {item.due_date}</div>
                         </div>
                       </Col>
@@ -152,7 +152,7 @@ const JobActivities = () => {
               })
               }
               <div className='center-btn' style={{ marginTop: '20px' }}>
-                <Link to={`/add-job/${jobId}/contacts`}>
+                <Link to={`/add-job/${jobId}/activities`}>
                   <Button>Add An Activity</Button>
                 </Link>
               </div>

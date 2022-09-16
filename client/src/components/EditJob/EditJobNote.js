@@ -13,7 +13,7 @@ import Form from 'react-bootstrap/Form'
 const EditJobNote = () => {
 
 
-  const { noteId } = useParams()
+  const { jobId, noteId } = useParams()
   const navigate = useNavigate()
   const payLoad = getPayLoad()
   const user = payLoad.sub.toString()
@@ -64,7 +64,7 @@ const EditJobNote = () => {
         },
       })
       console.log(data)
-      navigate(`/jobs/${noteId}/notes`)
+      navigate(`/jobs/${jobId}/notes`)
     } catch (error) {
       setErrors(true)
       console.log(error)

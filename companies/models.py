@@ -15,7 +15,6 @@ class Company(models.Model):
   )
   name = models.CharField(max_length=200, default=None)
   industry = models.CharField(max_length=200, default=None, blank=True)
-  founded = models.CharField(max_length=50, default=None, blank=True)
   hq_location = models.CharField(max_length=200, default=None, blank=True)
   size = models.CharField(max_length=200, default=None, blank=True)
   type = models.CharField(max_length=200, default=None, blank=True)

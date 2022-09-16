@@ -49,7 +49,7 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Control type='password' name='password' placeholder='Password' onChange={handleChange} value={loginData.password} />
             </Form.Group>
-            <Form.Group className='reg-btn'>
+            <Form.Group className='reg-btn center-btn'>
               <Button type="submit"> Submit</Button>
             </Form.Group>
             {errors && <div className='error'>{errors}</div>}

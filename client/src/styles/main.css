@@ -11,6 +11,7 @@ body {
 .btn-primary {
   background-color: #6D8CDF;
   border: none;
+  text-decoration: none;
 }
 .btn-primary:hover {
   border: 1px solid #364B85;

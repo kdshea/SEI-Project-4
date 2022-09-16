@@ -20,7 +20,6 @@ const EditJobCompany = () => {
   const [ formData, setFormData ] = useState({
     name: '',
     industry: '',
-    founded: '',
     hq_location: '',
     size: '',
     type: '',
@@ -39,8 +38,7 @@ const EditJobCompany = () => {
             Authorization: `Bearer ${getToken()}`,  
           },
         })
-
-        setFormData({ ...formData, name: data.name, industry: data.industry, founded: data.founded, hq_location: data.hq_location, size: data.size, type: data.type, company_url: data.company_url, description: data.description, job: data.job.toString(), owner: user })
+        setFormData({ ...formData, name: data.name, industry: data.industry, hq_location: data.hq_location, size: data.size, type: data.type, company_url: data.company_url, description: data.description, job: data.job.toString(), owner: user })
       } catch (error) {
         setErrors(true)
       }
@@ -87,10 +85,6 @@ const EditJobCompany = () => {
                 <Form.Group className="job-form-field" >
                   <Form.Label>Industry</Form.Label>
                   <Form.Control onChange={handleChange} type="text" name="industry" placeholder="+ add Industry" value={formData.industry} /> 
-                </Form.Group>
-                <Form.Group className="job-form-field" >
-                  <Form.Label>Founded</Form.Label>
-                  <Form.Control onChange={handleChange} type="text" name="founded" placeholder='+ add Year' value={formData.founded}  />
                 </Form.Group>
                 <Form.Group className="job-form-field" >
                   <Form.Label>Headquarters Location</Form.Label>

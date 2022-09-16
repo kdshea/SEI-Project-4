@@ -54,6 +54,7 @@ const AddJobDetails = () => {
     } catch (error) {
       setErrors(true)
       console.log(error)
+      console.log(error.response.data.detail)
     }
   }
 

@@ -45,7 +45,7 @@ const NavBar = () => {
         <>
           <Nav className='main-nav'>
             <Nav.Item>
-              <Navbar.Brand as={Link} to="/jobs"><img width="100" height="100" className="d-inline-block align-top"src={logo} alt="Magnifying glass logo"/></Navbar.Brand>
+              <Navbar.Brand as={Link} to="/"><img width="100" height="100" className="d-inline-block align-top"src={logo} alt="Magnifying glass logo"/></Navbar.Brand>
             </Nav.Item>
           </Nav>
           <Nav className='main-nav'>

@@ -14,6 +14,7 @@ import Form from 'react-bootstrap/Form'
 const JobNote = () => {
   const { jobId } = useParams()
   const [ noteData, setNoteData ] = useState(null)
+  const [ noteRemoved, setNoteRemoved ] = useState(0)
   const [ errors, setErrors ] = useState(false)
   const navigate = useNavigate()
 
@@ -32,7 +33,7 @@ const JobNote = () => {
       }
     }
     getData()
-  }, [])
+  }, [jobId, noteRemoved])
 
   const deleteNote = async (event, noteId) => {
     event.preventDefault()
@@ -43,6 +44,7 @@ const JobNote = () => {
         },
       })
       console.log(data)
+      setNoteRemoved(noteRemoved + 1)
     } catch (error) {
       setErrors(true)
       console.log(error)
