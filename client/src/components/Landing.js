@@ -25,7 +25,7 @@ const Landing = () => {
             <li>Save job listings</li>
             <li>Research companies</li>
             <li>Set reminders</li>
-            <li>Keep notes</li>
+            <li>Take notes</li>
             <li>Store contacts</li>
           </ul>
         </div>

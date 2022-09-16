@@ -72,10 +72,11 @@ const Register = () => {
   return (
     <main>
       <Container className='register-form'>
-        <div>
+
+        {/* <div>
           <button onClick={notify}>Notify!</button>
           <ToastContainer />
-        </div>
+        </div> */}
 
         <Row>
           <h1>Register</h1>    
