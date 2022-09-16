@@ -25,7 +25,6 @@ const EditJobActivities = () => {
     owner: '',
     job: '',
   })
-  const [checked, setChecked] = useState(false)
   const [ errors, setErrors ] = useState(false)
 
   useEffect(() => {
@@ -37,7 +36,8 @@ const EditJobActivities = () => {
           },
         })
 
-        setFormData({ ...formData, due_date: data.due_date, notes: data.notes, completed_status: data.completed_status.toString(), category: data.category, job: data.job.toString(), owner: user })
+        setFormData({ ...formData, due_date: data.due_date, notes: data.notes, completed_status: data.completed_status, category: data.category, job: data.job.toString(), owner: user })
+
       } catch (error) {
         setErrors(true)
       }
@@ -48,6 +48,16 @@ const EditJobActivities = () => {
 
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
+    console.log(formData)
+  }
+
+  const handleCheckBoxChange = (event, error) => {
+    console.log('checkbox')
+    console.log('target', event.target.checked)
+    event.target.checked ?
+      setFormData({ ...formData, completed_status: 'true' })
+      :
+      setFormData({ ...formData, completed_status: 'false' })
   }
 
   const handleSubmit = async (event) => {
@@ -105,7 +115,7 @@ const EditJobActivities = () => {
               </Form.Group>
               <Form.Group className="mb-3" >
                 {/* <Form.Label>Completed</Form.Label> */}
-                <Form.Check onChange={handleChange} type="checkbox" name="title" label="Completed" value={formData.completed_status} /> 
+                <Form.Check onChange={handleCheckBoxChange} type="checkbox" name="completed_status" label="Completed" checked={formData.completed_status} />
               </Form.Group>
               { errors && <p className='text-danger'>{errors}</p>}
               <Button variant="primary" type="submit">

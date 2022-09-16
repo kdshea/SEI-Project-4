@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { getToken } from './helpers/auth'
-import { useEffect, useState } from 'react'
+import { getToken, getPayLoad } from './helpers/auth'
+import { useEffect, useState, useRef } from 'react'
 import { Container, Nav, Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
@@ -10,10 +10,22 @@ import API_URL from '../config.js'
 import Spinner from './Spinner.js'
 
 const AllActivities = () => {
-
+  const payLoad = getPayLoad()
+  const user = payLoad.sub.toString()
   const [ activityData, setActivityData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
   const [ filter, setFilter ] = useState('')
+  const [ activitiesUpdated, setActivitiesUpdated ] = useState(0)
+  const [ formData, setFormData ] = useState({
+    due_date: '',
+    notes: '',
+    completed_status: '',
+    category: '',
+    owner: '',
+    job: '',
+  })
+  const [ itemId, setItemId ] = useState(null)
+  const isMounted = useRef(false)
 
   useEffect(() => {
     const getData = async () => {
@@ -31,23 +43,43 @@ const AllActivities = () => {
       }
     } 
     getData()
-  }, [filter])
+  }, [filter, activitiesUpdated, itemId])
 
-  const upcomingFilter = async (event) => {
-    event.preventDefault()
-    try {
-      const { data } = await axios.get(`${API_URL}/activities/upcoming/`, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,  
-        },
-      })
-      setActivityData(data)
-      console.log('new filter')
-    } catch (error) {
-      setErrors(true)
-      console.log(error)
-    }
+  const handleCheckBoxChange = (event, item) => {
+    console.log('item id', item)
+    console.log('checkbox')
+    setItemId(item.id)
+    console.log('target', event.target.checked)
+    event.target.checked ?
+      setFormData({ due_date: item.due_date, notes: item.notes, completed_status: true, category: item.category, job: item.job.id.toString(), owner: user })
+      :
+      setFormData({ due_date: item.due_date, notes: item.notes, completed_status: false, category: item.category, job: item.job.id.toString(), owner: user })
   }
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const handleSubmit = async (event) => {
+        try {
+          console.log('form data ->', formData)
+          const { data } = await axios.put(`${API_URL}/activities/${itemId}/`, formData, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,  
+            },
+          })
+          setFormData({ due_date: '', notes: '', completed_status: '', category: '', owner: '', job: '' })
+        } catch (error) {
+          setErrors(true)
+          console.log(error)
+        }
+      }
+      handleSubmit()
+      setActivitiesUpdated(activitiesUpdated + 1)
+    } else {
+      isMounted.current = true
+    }
+
+  }, [formData])
+
 
   return (
     <>
@@ -77,14 +109,15 @@ const AllActivities = () => {
               const { id } = item
               return (
                 <>
-                  <Row className='index-row' key={id} >
+                  <Row className='index-row' key={id} style={ item.completed_status ? { backgroundColor: '#F1F4F8', color: '#6D8CDF' } : { backgroundColor: 'white', color: '#364B85' } } >
                     <Col md={1}>
                       <div className='box'>
                         <Form>
                           <Form.Check 
                             type="checkbox"
                             id="completed_status"
-                            label={item.completed_status}
+                            checked={formData.id === item.id ? formData.completed_status : item.completed_status}
+                            onChange={event => handleCheckBoxChange(event, item)}
                           />
                         </Form>
                       </div>
@@ -92,7 +125,7 @@ const AllActivities = () => {
                     </Col>
                     <Col>
                       <div className='index-item box'>
-                        <div className='title'>{item.category}</div>
+                        <div className='title' style={ item.completed_status ? { color: '#6D8CDF', fontWeight: 'normal' } : { color: '#364B85' }} > {item.category} </div>
                         <div>{item.job.company_name}</div>
                         <div>{item.job.title}</div>
                         <div>{item.due_date}</div>

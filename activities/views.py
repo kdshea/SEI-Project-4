@@ -17,7 +17,7 @@ from django.db.models import Q
 class ActivityListView(APIView):
     # Get all activities
     def get(self, request):
-      activities = Activity.objects.filter(owner=request.user)
+      activities = Activity.objects.filter(owner=request.user).order_by('id').order_by('completed_status')
       serialized_activities = PopulatedActivitySerializer(activities, many=True)
       return Response(serialized_activities.data, status=status.HTTP_200_OK)
 
@@ -84,7 +84,7 @@ class ActivityByJobView(APIView):
 
     def get_activity(self, pk):
         try:
-            return Activity.objects.filter(job=pk)
+            return Activity.objects.filter(job=pk).order_by('id').order_by('completed_status')
         except Activity.DoesNotExist:
             raise NotFound("Activity not found.")
 
@@ -103,7 +103,7 @@ class ActivityByStatusView(APIView):
 
     def get_activity(self, pk):
         try:
-            return Activity.objects.filter(completed_status=pk)
+            return Activity.objects.filter(completed_status=pk).order_by('id').order_by('completed_status')
         except Activity.DoesNotExist:
             raise NotFound("No activities of this status found")
 
@@ -119,7 +119,7 @@ class ActivityPastDueView(APIView):
     def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(due_date__lt=datetime.date(now.year, now.month, now.day))
+          return Activity.objects.filter(due_date__lt=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -135,7 +135,7 @@ class ActivityDueTodayView(APIView):
     def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(due_date=datetime.date(now.year, now.month, now.day))
+          return Activity.objects.filter(due_date=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -151,7 +151,7 @@ class ActivityUpcomingView(APIView):
     def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(due_date__gte=datetime.date(now.year, now.month, now.day))
+          return Activity.objects.filter(due_date__gte=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import API_URL from '../../config.js'
 import Container from 'react-bootstrap/Container'
 import Spinner from '../Spinner.js'
 import JobNav from './JobNav'
-import { getToken } from '../helpers/auth.js'
+import { getToken, getPayLoad } from '../helpers/auth.js'
 import  Button  from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -13,9 +13,22 @@ import Form from 'react-bootstrap/Form'
 
 const JobActivities = () => {
   const { jobId } = useParams()
+  const payLoad = getPayLoad()
+  const user = payLoad.sub.toString()
   const [ activityData, setActivityData ] = useState(null)
   const [ activitiesRemoved, setActivitiesRemoved ] = useState(0)
+  const [ activitiesUpdated, setActivitiesUpdated ] = useState(0)
   const [ errors, setErrors ] = useState(false)
+  const [ formData, setFormData ] = useState({
+    due_date: '',
+    notes: '',
+    completed_status: '',
+    category: '',
+    owner: '',
+    job: '',
+  })
+  const [ itemId, setItemId ] = useState(null)
+  const isMounted = useRef(false)
 
 
   useEffect(() => {
@@ -33,7 +46,45 @@ const JobActivities = () => {
       }
     } 
     getData()
-  }, [jobId, activitiesRemoved])
+  }, [jobId, activitiesRemoved, activitiesUpdated, itemId])
+
+
+  const handleCheckBoxChange = (event, item) => {
+    console.log('item id', item)
+    console.log('checkbox')
+    setItemId(item.id)
+    console.log('target', event.target.checked)
+    event.target.checked ?
+      setFormData({ due_date: item.due_date, notes: item.notes, completed_status: true, category: item.category, job: item.job.toString(), owner: user })
+      :
+      setFormData({ due_date: item.due_date, notes: item.notes, completed_status: false, category: item.category, job: item.job.toString(), owner: user })
+  }
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const handleSubmit = async (event) => {
+        console.log('item id', itemId)
+        try {
+          console.log('form data ->', formData)
+          const { data } = await axios.put(`${API_URL}/activities/${itemId}/`, formData, {
+            headers: {
+              Authorization: `Bearer ${getToken()}`,  
+            },
+          })
+          setFormData({ due_date: '', notes: '', completed_status: '', category: '', owner: '', job: '' })
+        } catch (error) {
+          setErrors(true)
+          console.log(error)
+        }
+      }
+      handleSubmit()
+      setActivitiesUpdated(activitiesUpdated + 1)
+    } else {
+      isMounted.current = true
+    }
+
+  }, [formData])
+
 
   const deleteActivity = async (event, activityId) => {
     event.preventDefault()
@@ -63,16 +114,15 @@ const JobActivities = () => {
                 const { id } = item
                 return (
                   <>
-                    <Row className='index-row' key={id} >
+                    <Row className='index-row' key={id} style={ item.completed_status ? { backgroundColor: '#F1F4F8', color: '#6D8CDF' } : { backgroundColor: 'white', color: '#364B85' } } >
                       <Col md={1}>
                         <div className='box'>
-                          {/*  https://stackoverflow.com/questions/42682406/how-to-get-values-properties-from-a-react-bootstrap-checkbox */}
-                          {/* https://react-bootstrap.github.io/forms/checks-radios/#form-check-props */}
                           <Form>
                             <Form.Check 
                               type="checkbox"
                               id="completed_status"
-                              label={item.completed_status}
+                              checked={formData.id === item.id ? formData.completed_status : item.completed_status}
+                              onChange={event => handleCheckBoxChange(event, item)}
                             />
                           </Form>
                         </div>
@@ -80,7 +130,7 @@ const JobActivities = () => {
                       </Col>
                       <Col>
                         <div className='index-item box'>
-                          <div className='title'>{item.category}</div>
+                          <div className='title' style={ item.completed_status ? { color: '#6D8CDF', fontWeight: 'normal' } : { color: '#364B85' } }>{item.category}</div>
                           <div>Notes: {item.notes}</div>
                           <div>Due: {item.due_date}</div>
                         </div>
