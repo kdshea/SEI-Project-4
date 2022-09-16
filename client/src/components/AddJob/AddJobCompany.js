@@ -58,7 +58,13 @@ const AddJobCompany = () => {
         },
       })
       console.log(data[0])
-      setFormData({ ...formData, name: data[0].CompanyName, industry: data[0].Industries, founded: data[0].Founded, hq_location: data[0].Headquarters, size: data[0].CompanySize, type: data[0].Type, company_url: data[0].Website, description: data[0].Description })
+      data[0].Founded 
+        ? 
+        setFormData({ ...formData, name: data[0].CompanyName, industry: data[0].Industries, founded: data[0].Founded, hq_location: data[0].Headquarters, size: data[0].CompanySize, type: data[0].Type, company_url: data[0].Website, description: data[0].Description })
+        : 
+        setFormData({ ...formData, name: data[0].CompanyName, industry: data[0].Industries, founded: '', hq_location: data[0].Headquarters, size: data[0].CompanySize, type: data[0].Type, company_url: data[0].Website, description: data[0].Description })
+      
+
       setCompanyImported(companyImported + 1)
     } catch (error) {
       setErrors(true)
@@ -150,7 +156,6 @@ const AddJobCompany = () => {
                   Save
                 </Button>
               </Form.Group>
-
             </Form>
           </Row>
         </Container>

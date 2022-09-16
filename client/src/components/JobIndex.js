@@ -57,11 +57,11 @@ const JobIndex = () => {
               </Nav.Item>
             </Nav>
             <Row className='index-labels'>
-              <div style={{ width: '250px' }}>Company</div>
-              <div style={{ width: '200px' }}>Job Title</div>
-              <div style={{ width: '200px' }}>Job Type</div>
-              <div style={{ width: '200px' }}>Application Status</div>
-              <div style={{ width: '250px' }}>Activities</div>
+              <Col md={2} >Company</Col>
+              <Col md={3}>Job Title</Col>
+              <Col md={2}>Job Type</Col>
+              <Col md={3}>Application Status</Col>
+              <Col md={2}>Activities</Col>
             </Row>
             { jobData.map(item => {
               const { id } = item
@@ -78,11 +78,11 @@ const JobIndex = () => {
                     <Col>
                       <div >
                         <Link className='index-item box' to={`/jobs/${item.id}`}>
-                          <div style={{ width: '250px' }}>{item.company_name}</div>
-                          <div style={{ width: '200px' }} className='title'>{item.title}</div>
-                          <div style={{ width: '100px' }}>{item.job_type}</div>
-                          <div style={{ width: '100px' }}>{item.job_status}</div>
-                          <div>
+                          <Col md={2} >{item.company_name}</Col>
+                          <Col md={2} className='title'>{item.title}</Col>
+                          <Col md={1}>{item.job_type}</Col>
+                          <Col md={1}>{item.job_status}</Col>
+                          <Col md={3}>
                             <ul>
                               { item.activities.length > 0
                                 ?
@@ -99,7 +99,7 @@ const JobIndex = () => {
                                 </>
                               }
                             </ul>
-                          </div>
+                          </Col>
                         </Link>
                       </div>
                     </Col>

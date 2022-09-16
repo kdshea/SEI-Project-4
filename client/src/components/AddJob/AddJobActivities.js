@@ -92,14 +92,11 @@ const AddJobActivities = () => {
                   <Form.Label>Note</Form.Label>
                   <Form.Control onChange={handleChange} as="textarea" name="notes" placeholder="+ add Notes" value={formData.notes} /> 
                 </Form.Group>
-                <Form.Group  >
-                  <Form.Check onChange={handleChange} type="checkbox" name="title" label="Completed" value={formData.completed_status} /> 
-                </Form.Group>
               </div>
               { errors && <p className='text-danger'>{errors}</p>}
               <Form.Group className='center-btn'>
                 <Button type="submit">
-                  Save
+                  Add Activity
                 </Button>
               </Form.Group>
             </Form>

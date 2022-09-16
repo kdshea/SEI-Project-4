@@ -108,7 +108,7 @@ const JobActivities = () => {
         <>
           <JobNav />
           <div>
-            <Container>
+            <Container className='contact-container'>
 
               { activityData.map(item => {
                 const { id } = item
@@ -151,7 +151,11 @@ const JobActivities = () => {
                 )
               })
               }
-              <Link to={`/add-job/${jobId}/activities`}><Button>Add An Activity</Button></Link>
+              <div className='center-btn' style={{ marginTop: '20px' }}>
+                <Link to={`/add-job/${jobId}/contacts`}>
+                  <Button>Add An Activity</Button>
+                </Link>
+              </div>
             </Container>
           </div>
         </>

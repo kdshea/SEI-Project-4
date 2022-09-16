@@ -59,7 +59,7 @@ const AddJobContact = () => {
     <>
       <div className='form-page'>
         <JobNav />
-        <Container className='add-job'>
+        <Container className='add-note'>
           <Row>
             <Form onSubmit={handleSubmit}>
               <div className='job-form'>
@@ -87,7 +87,7 @@ const AddJobContact = () => {
               { errors && <p className='text-danger'>{errors}</p>}
               <Form.Group className='center-btn'>
                 <Button type="submit">
-                  Save
+                  Add Contact
                 </Button>
               </Form.Group>
             </Form>

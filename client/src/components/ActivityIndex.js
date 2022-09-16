@@ -124,12 +124,12 @@ const AllActivities = () => {
 
                     </Col>
                     <Col>
-                      <div className='index-item box'>
-                        <div className='title' style={ item.completed_status ? { color: '#6D8CDF', fontWeight: 'normal' } : { color: '#364B85' }} > {item.category} </div>
-                        <div>{item.job.company_name}</div>
-                        <div>{item.job.title}</div>
-                        <div>{item.due_date}</div>
-                      </div>
+                      <Link className='index-item box' to={`/jobs/${item.job.id}/activities`}>
+                        <Col className='title' style={ item.completed_status ? { color: '#6D8CDF', fontWeight: 'normal' } : { color: '#364B85' }} > {item.category} </Col>
+                        <Col>{item.job.company_name}</Col>
+                        <Col>{item.job.title}</Col>
+                        <Col>{item.due_date}</Col>
+                      </Link>
                     </Col>
                     <Col md={1}>
                       <div className='box'>

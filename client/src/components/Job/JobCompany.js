@@ -112,7 +112,12 @@ const JobDetails = () => {
                 </Card>
               </div>
               :
-              <Link to={`/add-job/${jobId}/company`}><Button>Add Company</Button></Link>)
+              <div className='center-btn' style={{ marginTop: '20px' }}>
+                <Link to={`/add-job/${jobId}/company`}>
+                  <Button>Add Company</Button>
+                </Link>
+              </div>)
+              
             :
             <h2 className="text-center">
               { errors ? 'Something went wrong. Please try again later' : <Spinner />}

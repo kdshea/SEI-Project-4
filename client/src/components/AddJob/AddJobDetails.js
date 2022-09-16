@@ -23,7 +23,7 @@ const AddJobDetails = () => {
   const [ formData, setFormData ] = useState({
     company_name: '',
     title: '',
-    post_date: '',
+    // post_date: null,
     location: '',
     salary: '',
     benefits: '',

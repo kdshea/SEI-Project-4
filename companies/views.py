@@ -30,6 +30,8 @@ class CompanyListView(APIView):
       return Response(company_to_add.data, status=status.HTTP_201_CREATED)
     except Exception as e:
       print('ERROR')
+      print(e.__dict__)
+      print(str(e))
       return Response(e.__dict__ if e.__dict__ else str(e), status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class CompanyDetailView(APIView):
