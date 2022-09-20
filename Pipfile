@@ -11,6 +11,8 @@ autopep8 = "*"
 django-rest-framework = "*"
 django-cors-headers = "*"
 pyjwt = "*"
+python-dotenv = "*"
+django-on-heroku = "*"
 
 [dev-packages]
 
