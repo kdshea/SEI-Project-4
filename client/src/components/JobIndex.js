@@ -12,7 +12,7 @@ import Spinner from './Spinner.js'
 
 const JobIndex = () => {
 
-  const [ jobData, setJobData ] = useState([])
+  const [ jobData, setJobData ] = useState(null)
   const [ errors, setErrors ] = useState(false)
   const [ filter, setFilter ] = useState('')
 

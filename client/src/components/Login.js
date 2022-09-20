@@ -24,7 +24,6 @@ const Login = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('login data ->', loginData)
       const { data } = await axios.post(`${API_URL}/auth/login/`, loginData)
       setToken(data.token)
 
