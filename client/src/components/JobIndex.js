@@ -19,7 +19,6 @@ const JobIndex = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        console.log('job data', jobData)
         const { data } = await axios.get(`${API_URL}/jobs/${filter}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,  
