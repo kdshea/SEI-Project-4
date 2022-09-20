@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import django_on_heroku 
 from pathlib import Path
 import os
+import environ
 
+from pathlib import Path
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-wi3_q4)yoh^l07bi@njmsm4tds*-2+3ai8aissn3f^r-hhb1tj'
 
-SECRETY_KEY = os.getenv('SECRET')
+SECRETY_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'environ',
     'jwt_auth',
     'jobs',
     'activities',
