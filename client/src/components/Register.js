@@ -43,9 +43,9 @@ const Register = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('post data ->', formData)
+      // console.log('post data ->', formData)
       const { data } = await axios.post(`${API_URL}/auth/register/`, formData)
-      console.log('response ->', data)
+      // console.log('response ->', data)
       autoLogin()
     } catch (error) {
       setErrors(true)
@@ -57,7 +57,7 @@ const Register = () => {
 
   const autoLogin = async (event) => {
     try {
-      console.log('login data ->', loginData)
+      // console.log('login data ->', loginData)
       const { data } = await axios.post(`${API_URL}/auth/login/`, loginData)
       setToken(data.token)
       navigate('/add-job')

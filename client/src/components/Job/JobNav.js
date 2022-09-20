@@ -20,7 +20,7 @@ const JobNav = () => {
           },
         })
         setJob(data)
-        console.log('nav data', data)
+        // console.log('nav data', data)
 
       } catch (error) {
         setErrors(error.message)

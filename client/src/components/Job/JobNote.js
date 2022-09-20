@@ -43,7 +43,7 @@ const JobNote = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data)
+      // console.log(data)
       setNoteRemoved(noteRemoved + 1)
     } catch (error) {
       setErrors(true)

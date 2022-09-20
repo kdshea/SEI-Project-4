@@ -26,7 +26,7 @@ const JobDetails = () => {
           },
         })
         setCompany(data)
-        console.log('data', data)
+        // console.log('data', data)
       } catch (error) {
         setErrors(error.message)
         console.log(error.message)
@@ -43,7 +43,7 @@ const JobDetails = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data)
+      // console.log(data)
       setCompanyDeleted(companyDeleted + 1)
     } catch (error) {
       setErrors(true)

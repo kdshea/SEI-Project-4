@@ -56,7 +56,7 @@ const AddJobCompany = () => {
           'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com', 
         },
       })
-      console.log(data[0])
+      // console.log(data[0])
       data[0].Founded 
         ? 
         setFormData({ ...formData, name: data[0].CompanyName, industry: data[0].Industries, founded: data[0].Founded, hq_location: data[0].Headquarters, size: data[0].CompanySize, type: data[0].Type, company_url: data[0].Website, description: data[0].Description })
@@ -72,19 +72,19 @@ const AddJobCompany = () => {
   }
 
   useEffect(() => {
-    console.log('Change in form data', formData)
+    // console.log('Change in form data', formData)
   },[formData])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('form data ->', formData)
+      // console.log('form data ->', formData)
       const { data } = await axios.post(`${API_URL}/companies/`, formData, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log(data)
+      // console.log(data)
       navigate(`/jobs/${jobId}/company`)
     } catch (error) {
       setErrors(true)

@@ -48,12 +48,10 @@ const EditJobActivities = () => {
 
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
-    console.log(formData)
+    // console.log(formData)
   }
 
   const handleCheckBoxChange = (event, error) => {
-    console.log('checkbox')
-    console.log('target', event.target.checked)
     event.target.checked ?
       setFormData({ ...formData, completed_status: 'true' })
       :
@@ -63,14 +61,14 @@ const EditJobActivities = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('form data ->', formData)
+      // console.log('form data ->', formData)
       const { data } = await axios.put(`${API_URL}/activities/${activityId}/`, formData, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log(data)
-      console.log(('form data job', formData.job))
+      // console.log(data)
+      // console.log(('form data job', formData.job))
       navigate(`/jobs/${formData.job}/activities`)
     } catch (error) {
       setErrors(true)

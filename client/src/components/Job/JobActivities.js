@@ -50,10 +50,7 @@ const JobActivities = () => {
 
 
   const handleCheckBoxChange = (event, item) => {
-    console.log('item id', item)
-    console.log('checkbox')
     setItemId(item.id)
-    console.log('target', event.target.checked)
     event.target.checked ?
       setFormData({ due_date: item.due_date, notes: item.notes, completed_status: true, category: item.category, job: item.job.toString(), owner: user })
       :
@@ -63,9 +60,9 @@ const JobActivities = () => {
   useEffect(() => {
     if (isMounted.current) {
       const handleSubmit = async (event) => {
-        console.log('item id', itemId)
+        // console.log('item id', itemId)
         try {
-          console.log('form data ->', formData)
+          // console.log('form data ->', formData)
           const { data } = await axios.put(`${API_URL}/activities/${itemId}/`, formData, {
             headers: {
               Authorization: `Bearer ${getToken()}`,  
@@ -94,7 +91,7 @@ const JobActivities = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data)
+      // console.log(data)
       setActivitiesRemoved(activitiesRemoved + 1)
     } catch (error) {
       setErrors(true)

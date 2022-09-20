@@ -48,7 +48,5 @@ class LoginView(APIView):
             settings.SECRET_KEY,
             "HS256"
         )
-        print('key', settings.SECRET_KEY)
-        print("TOKEN ->", token)
 
         return Response({ "token": token, "message": f"Welcome back {user_to_login.first_name}" })

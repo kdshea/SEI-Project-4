@@ -30,14 +30,13 @@ const AllActivities = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        console.log('payload', payLoad)
         const { data } = await axios.get(`${API_URL}/activities/${filter}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,  
           },
         })
         setActivityData(data)
-        console.log(data)
+        // console.log(data)
       } catch (error) {
         setErrors(error.message)
         console.log(error.message)
@@ -47,10 +46,7 @@ const AllActivities = () => {
   }, [filter, activitiesUpdated, itemId])
 
   const handleCheckBoxChange = (event, item) => {
-    console.log('item id', item)
-    console.log('checkbox')
     setItemId(item.id)
-    console.log('target', event.target.checked)
     event.target.checked ?
       setFormData({ due_date: item.due_date, notes: item.notes, completed_status: true, category: item.category, job: item.job.id.toString(), owner: user })
       :
@@ -61,7 +57,7 @@ const AllActivities = () => {
     if (isMounted.current) {
       const handleSubmit = async (event) => {
         try {
-          console.log('form data ->', formData)
+          // console.log('form data ->', formData)
           const { data } = await axios.put(`${API_URL}/activities/${itemId}/`, formData, {
             headers: {
               Authorization: `Bearer ${getToken()}`,  

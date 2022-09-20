@@ -54,13 +54,13 @@ const AddJobContact = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('form data ->', formData)
+      // console.log('form data ->', formData)
       const { data } = await axios.put(`${API_URL}/contacts/${contactId}/`, formData, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log(data)
+      // console.log(data)
       navigate(`/jobs/${formData.job}/contacts`)
     } catch (error) {
       setErrors(true)

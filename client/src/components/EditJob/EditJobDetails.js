@@ -55,13 +55,13 @@ const EditJobDetails = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('form data ->', formData)
+      // console.log('form data ->', formData)
       const { data } = await axios.put(`${API_URL}/jobs/${jobId}/`, formData, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log('updated data ->', data)
+      // console.log('updated data ->', data)
       navigate(`/jobs/${data.id}`)
     } catch (error) {
       setErrors(true)

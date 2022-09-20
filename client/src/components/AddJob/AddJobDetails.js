@@ -14,16 +14,13 @@ const AddJobDetails = () => {
   const navigate = useNavigate()
   useEffect(() => {
     const payLoad = getPayLoad()
-    console.log('payLoad', payLoad.sub)
     const user = payLoad.sub.toString()
-    console.log('user', user)
     setFormData({ ...formData, owner: user })
   }, [])
 
   const [ formData, setFormData ] = useState({
     company_name: '',
     title: '',
-    // post_date: null,
     location: '',
     salary: '',
     benefits: '',
@@ -43,13 +40,13 @@ const AddJobDetails = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('form data ->', formData)
+      // console.log('form data ->', formData)
       const { data } = await axios.post(`${API_URL}/jobs/`, formData, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log(data)
+      // console.log(data)
       navigate(`/jobs/${data.id}`)
     } catch (error) {
       setErrors(true)

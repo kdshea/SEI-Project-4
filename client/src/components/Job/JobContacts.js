@@ -42,7 +42,7 @@ const JobActivities = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data)
+      // console.log(data)
       setContactsRemoved(contactsRemoved + 1)
     } catch (error) {
       setErrors(true)

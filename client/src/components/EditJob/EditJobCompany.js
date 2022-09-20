@@ -48,19 +48,19 @@ const EditJobCompany = () => {
 
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
-    console.log('form data', formData)
+    // console.log('form data', formData)
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      console.log('form data ->', formData)
+      // console.log('form data ->', formData)
       const { data } = await axios.put(`${API_URL}/companies/${companyId}/`, formData, {
         headers: {
           Authorization: `Bearer ${getToken()}`,  
         },
       })
-      console.log(data)
+      // console.log(data)
       navigate(`/jobs/${formData.job}/company`)
     } catch (error) {
       setErrors(true)
