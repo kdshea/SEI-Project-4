@@ -82,9 +82,9 @@ class ActivityByJobView(APIView):
         except Job.DoesNotExist:
             raise NotFound("Job not found.")
 
-    def get_activity(self, request, pk):
+    def get_activity(self, pk):
         try:
-            return Activity.objects.filter(owner=request.user).filter(job=pk).order_by('id').order_by('completed_status')
+            return Activity.objects.filter(job=pk).order_by('id').order_by('completed_status')
         except Activity.DoesNotExist:
             raise NotFound("Activity not found.")
 
@@ -101,9 +101,9 @@ class ActivityByJobView(APIView):
 class ActivityByStatusView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get_activity(self, request, pk):
+    def get_activity(self, pk):
         try:
-            return Activity.objects.filter(owner=request.user).filter(completed_status=pk).order_by('id').order_by('completed_status')
+            return Activity.objects.filter(completed_status=pk).order_by('id').order_by('completed_status')
         except Activity.DoesNotExist:
             raise NotFound("No activities of this status found")
 
@@ -116,10 +116,10 @@ class ActivityByStatusView(APIView):
 
 class ActivityPastDueView(APIView):
     permission_classes = [IsAuthenticated]
-    def get_activity(self, request):
+    def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(owner=request.user).filter(due_date__lt=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
+          return Activity.objects.filter(due_date__lt=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -127,15 +127,15 @@ class ActivityPastDueView(APIView):
     # Get Activity by date
     def get(self, request):
         activities = self.get_activity()
-        serialized_activities = PopulatedActivitySerializer(activities, many=True)
+        serialized_activities = PopulatedActivitySerializer(activities.filter(owner=request.user), many=True)
         return Response(serialized_activities.data)
 
 class ActivityDueTodayView(APIView):
     permission_classes = [IsAuthenticated]
-    def get_activity(self, request):
+    def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(owner=request.user).filter(due_date=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
+          return Activity.objects.filter(due_date=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -143,15 +143,15 @@ class ActivityDueTodayView(APIView):
     # Get Activity by date
     def get(self, request):
         activities = self.get_activity()
-        serialized_activities = PopulatedActivitySerializer(activities, many=True)
+        serialized_activities = PopulatedActivitySerializer(activities.filter(owner=request.user), many=True)
         return Response(serialized_activities.data)
 
 class ActivityUpcomingView(APIView):
     permission_classes = [IsAuthenticated]
-    def get_activity(self, request):
+    def get_activity(self):
       try:
           now = datetime.datetime.now()
-          return Activity.objects.filter(owner=request.user).filter(due_date__gte=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
+          return Activity.objects.filter(due_date__gte=datetime.date(now.year, now.month, now.day)).order_by('id').order_by('completed_status')
       except Activity.DoesNotExist:
           raise NotFound("Activity not found.")
 
@@ -159,5 +159,5 @@ class ActivityUpcomingView(APIView):
     # Get Activity by date
     def get(self, request):
         activities = self.get_activity()
-        serialized_activities = PopulatedActivitySerializer(activities, many=True)
+        serialized_activities = PopulatedActivitySerializer(activities.filter(owner=request.user), many=True)
         return Response(serialized_activities.data)

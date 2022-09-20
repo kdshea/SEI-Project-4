@@ -93,7 +93,7 @@ const AllActivities = () => {
                 <Nav.Link onClick={() => setFilter('today/')}>Due Today</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link onClick={() => setFilter('upcoming/')}>Past Due</Nav.Link>
+                <Nav.Link onClick={() => setFilter('past/')}>Past Due</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link onClick={() => setFilter('completedFalse/')}>Incomplete</Nav.Link>
