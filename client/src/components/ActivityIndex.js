@@ -30,6 +30,7 @@ const AllActivities = () => {
   useEffect(() => {
     const getData = async () => {
       try {
+        console.log('payload', payLoad)
         const { data } = await axios.get(`${API_URL}/activities/${filter}`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,  
