@@ -9,7 +9,6 @@ import API_URL from '../../config.js'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
-
 const AddJobCompany = () => {
 
   const { jobId } = useParams()
@@ -50,9 +49,10 @@ const AddJobCompany = () => {
   const handleImport = async (event) => {
     event.preventDefault()
     try {
+
       const { data } = await axios.post('https://linkedin-company-data.p.rapidapi.com/linkedInCompanyData', linkedInUrl, {
         headers: {
-          'X-RapidAPI-KEY': '12a3376f07msh1d4632ebeec3cb3p13b8acjsn584060f07fc0',
+          'X-RapidAPI-KEY': process.env.REACT_APP_API_KEY,
           'X-RapidAPI-Host': 'linkedin-company-data.p.rapidapi.com', 
         },
       })

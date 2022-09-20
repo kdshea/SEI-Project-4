@@ -84,6 +84,7 @@ button {
   display: flex;
   justify-content: space-between;
   background-color: #364B85;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
 }
 
 .nav-item {
@@ -275,6 +276,10 @@ button {
 .company-details {
   max-width: 600px;
   min-height: calc(100vh - 340px);
+}
+
+.activity-container {
+  margin-top: 50px;
 }
 
 .note-details {
