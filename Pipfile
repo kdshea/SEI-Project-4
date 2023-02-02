@@ -14,6 +14,7 @@ pyjwt = "*"
 python-dotenv = "*"
 django-on-heroku = "*"
 django-environ = "*"
+environ = "*"
 
 [dev-packages]
 
