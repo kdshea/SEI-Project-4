@@ -9,7 +9,11 @@ const Footer = () => {
         </div>
         <div >
           <p>
-            Created by Kate Shea
+            <a href="https://kdshea.com/" target="_blank" rel="noreferrer" >
+              Created by Kate Shea
+            </a>
+
+            
             <a className="gitLink" href="https://github.com/kdshea" target="_blank" rel="noreferrer" >
               <i className="fa-brands fa-github"></i> 
             </a>

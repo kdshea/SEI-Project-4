@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container'
 
 const Login = () => {
   const navigate = useNavigate() 
-  const [ errors, setErrors ] = useState(false)
+  const [ errors, setErrors ] = useState('')
   const [ loginData, setLoginData ] = useState({
     email: '',
     password: '',
@@ -29,8 +29,8 @@ const Login = () => {
 
       navigate('/jobs')
     } catch (error) {
-      setErrors(true)
       console.log(error)
+      setErrors('Invalid Credentials')
     }
   }
   
@@ -51,7 +51,7 @@ const Login = () => {
             <Form.Group className='reg-btn center-btn'>
               <Button type="submit"> Submit</Button>
             </Form.Group>
-            {errors && <div className='error'>{errors}</div>}
+            { errors && <p className='error text-danger'>{errors}</p>}
           </Form>
         </Row>
       </Container>

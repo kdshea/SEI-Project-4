@@ -30,7 +30,7 @@ const Register = () => {
     password_confirmation: '',
   })
   const [ loginData, setLoginData ] = useState('')
-  const [ errors, setErrors ] = useState(false)
+  const [ errors, setErrors ] = useState('')
   
   const handleChange = (event, error) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -48,12 +48,25 @@ const Register = () => {
       // console.log('response ->', data)
       autoLogin()
     } catch (error) {
-      setErrors(true)
-      console.log(error)
-      console.log(error.response.data)
-      
+
+      if ('username' in error.response.data.detail) {
+        setErrors(error.response.data.detail.username[0])
+      } 
+      if ('email' in error.response.data.detail) {
+        setErrors(error.response.data.detail.email[0])
+      }
+      if ('password' in error.response.data.detail) {
+        setErrors(error.response.data.detail.password[0])
+      } 
+      if ('password_confirmation' in error.response.data.detail) {
+        setErrors('Passwords do not match.')
+      }
+      if ('non_field_errors' in error.response.data.detail) {
+        setErrors(error.response.data.detail.non_field_errors[0])
+      }
     }
   }
+
 
   const autoLogin = async (event) => {
     try {
@@ -103,7 +116,7 @@ const Register = () => {
             <Form.Group className="mb-3" >
               <Form.Control onChange={handleChange} type="password" name="password_confirmation" placeholder='Confirm Password' value={formData.password_confirmation} /> 
             </Form.Group>
-            { errors && <p className='text-danger'>{errors}</p>}
+            { errors && <p className='error text-danger'>{errors}</p>}
             <Form.Group className='center-btn'>
               <Button type="submit">
                 Submit

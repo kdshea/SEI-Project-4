@@ -33,6 +33,10 @@ button {
   justify-content: center;
 }
 
+.error {
+  text-align: center;
+}
+
 .landing {
   text-align: center;
 }
