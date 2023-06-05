@@ -9,13 +9,24 @@ const Landing = () => {
       <section className='top'>
         <div>
           <img src={computerImg} alt="Researching on a computer" />
+          <div>
+            <p className="demo">Explore Seeker with these demo account credentials
+              <br />
+          Email: demo@mail.com  Password: demopassword</p>
+          </div>
         </div>
         <div>
           <h2>Organize your job search</h2>
           <p>Manage all of your job applications in one place</p>
-          <Link to='/register'>
-            <button>Join Now</button>
-          </Link>
+          <div className="landing-buttons">
+            <Link to='/register'>
+              <button>Register</button>
+            </Link>
+            <Link to='/login'>
+              <button>Login</button>
+            </Link>
+          </div>
+
         </div>
       </section>
       <section className='bottom'>

@@ -81,7 +81,16 @@ button {
     flex-direction: row;
     justify-content: space-around;
     padding: 100px;
-
+  
+    .demo {
+      font-size: 1rem;
+      padding-top: 20px;
+    }
+  .landing-buttons {
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-around;
+  }
   button {
     font-size: 24px;
     width: 150px;
