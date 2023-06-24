@@ -17,7 +17,7 @@ const Footer = () => {
             <a className="gitLink" href="https://github.com/kdshea" target="_blank" rel="noreferrer" >
               <i className="fa-brands fa-github"></i> 
             </a>
-            <a className="gitLink" href="https://www.linkedin.com/in/katedshea/" target="_blank" rel="noreferrer" > 
+            <a className="gitLink" href="https://www.linkedin.com/in/kdshea/" target="_blank" rel="noreferrer" > 
               <i className="fa-brands fa-linkedin"></i> 
             </a>
           </p>
