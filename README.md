@@ -264,3 +264,7 @@ __Other__
 	* A search bar to go through job descriptions
 	* Error message handling from API responses by looping through error.data.detail
 
+## 📄 License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
