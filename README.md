@@ -10,6 +10,7 @@
 * [Build Process](#build-process)
 * [Bugs](#bugs)
 * [Future Improvements](#future-improvements) 
+* [Other Projects](#other-projects) 
 
 ## Project Overview  
 
@@ -263,5 +264,21 @@ __Other__
 	* Email reminders for upcoming tasks
 	* A search bar to go through job descriptions
 	* Error message handling from API responses by looping through error.data.detail
+
+## Other Projects
+Take a look at other projects that I have in my own portfolio:
+
+**[Truffle Health Bill Upload](https://github.com/kdshea/Medical-Bill-Upload)**
+
+**[Exploradex](https//github.com/kdshea/Exploradex-Server)** 
+
+**[Gmail Node Server](https://github.com/kdshea/Gmail-Node-Server)**
+
+**[Coconut Club](https://github.com/kdshea/Coconut-Club-Site)**
+
+**[Tetris Clone](https://github.com/kdshea/Tetris-Clone)**
+
+**[Speed Pour 2016](https://github.com/kdshea/Speed-Pour-2016)**
+
 
 
